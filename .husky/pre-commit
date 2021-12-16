@@ -1,0 +1,20 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npm run prettier:check ||
+(
+    echo 'prettier error found!';
+    false;
+)
+
+npm run lint ||
+(
+    echo 'lint check error!';
+    false;
+)
+
+npm run test:check ||
+(
+    echo 'jest check error!';
+    false;
+)
