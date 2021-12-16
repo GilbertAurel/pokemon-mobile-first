@@ -1,14 +1,21 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { css, jsx } from '@emotion/react';
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ROUTES } from 'routes';
 
 const App: React.FC = () => {
-  const styles = {
-    container: css``,
-  };
-
-  return <div css={styles.container}>app works!</div>;
+  return (
+    <Router>
+      <Routes>
+        {ROUTES.map((route) => (
+          <Route
+            key={route.path}
+            path={route.path}
+            element={<route.component />}
+          />
+        ))}
+      </Routes>
+    </Router>
+  );
 };
 
 export default App;
