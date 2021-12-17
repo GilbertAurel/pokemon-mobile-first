@@ -5,7 +5,7 @@ export const useToggleTheme = (): [ThemeSelections, () => void] => {
   const [theme, setTheme] = useState<ThemeSelections>('light');
 
   useEffect(() => {
-    const localTheme = <ThemeSelections>localStorage.getItem('type');
+    const localTheme = <ThemeSelections>localStorage.getItem('type') ?? 'light';
     setTheme(localTheme);
   }, []);
 
