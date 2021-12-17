@@ -1,8 +1,16 @@
+import { ThemeProvider } from '@emotion/react';
 import { render, screen } from '@testing-library/react';
+import { THEME } from 'styles/theme';
 import SearchWidget from '..';
 
 describe('search widget component', () => {
-  beforeEach(() => render(<SearchWidget />));
+  beforeEach(() =>
+    render(
+      <ThemeProvider theme={THEME.light}>
+        <SearchWidget />
+      </ThemeProvider>
+    )
+  );
 
   it('should have search bar and show all button', () => {
     expect(screen.getByTestId('search-bar')).toBeTruthy();
