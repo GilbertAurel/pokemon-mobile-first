@@ -17,5 +17,6 @@ describe('home page', () => {
     expect(screen.getByTestId('cover-img')).toBeTruthy();
     expect(screen.getByTestId('search')).toBeTruthy();
     expect(screen.getByTestId('list')).toBeTruthy();
+    expect(screen.getByTestId('navbar')).toBeTruthy();
   });
 });

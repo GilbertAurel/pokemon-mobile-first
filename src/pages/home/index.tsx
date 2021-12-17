@@ -7,6 +7,7 @@ import cover from 'assets/images/cover.webp';
 import SearchWidget from 'components/search';
 import HeaderWidget from 'components/header';
 import PokemonListWidget from 'components/pokemon-list';
+import NavbarWidget from 'components/navbar';
 
 const HomePage: React.FC = () => {
   const theme: any = useTheme();
@@ -24,6 +25,7 @@ const HomePage: React.FC = () => {
       <HeaderWidget />
       <SearchWidget />
       <PokemonListWidget />
+      <NavbarWidget />
     </div>
   );
 };
