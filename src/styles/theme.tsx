@@ -14,6 +14,12 @@ type ThemeType = {
     grayed: string;
     delete: string;
   };
+  font: {
+    button: string;
+    body: string;
+    headline: string;
+    title: string;
+  };
 };
 
 type AllThemeType = {
@@ -32,6 +38,12 @@ export const THEME: AllThemeType = {
       grayed: '#BCBCBC',
       delete: '#FB3232',
     },
+    font: {
+      button: '0.6875rem',
+      body: '0.75rem',
+      headline: '1rem',
+      title: '1.5rem',
+    },
   },
   dark: {
     colors: {
@@ -42,6 +54,12 @@ export const THEME: AllThemeType = {
       text: '#0F3E51',
       grayed: '#BCBCBC',
       delete: '#FB3232',
+    },
+    font: {
+      button: '0.6875rem',
+      body: '0.75rem',
+      headline: '1rem',
+      title: '1.5rem',
     },
   },
 };
