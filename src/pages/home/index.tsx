@@ -4,6 +4,7 @@ import { css, jsx, useTheme } from '@emotion/react';
 import React from 'react';
 
 import cover from 'assets/images/cover.webp';
+import SearchWidget from 'components/search';
 
 const HomePage: React.FC = () => {
   const theme: any = useTheme();
@@ -24,18 +25,7 @@ const HomePage: React.FC = () => {
           Find your favorite pokemons and make them as your beloved pets!
         </p>
       </div>
-      <div data-testid="search">
-        <form data-testid="search-bar">
-          <input
-            type="text"
-            name="name"
-            id="pokemon-name"
-            placeholder="search by pokemon name.."
-          />
-          <button type="submit"></button>
-        </form>
-        <button data-testid="search-all-btn">show all</button>
-      </div>
+      <SearchWidget />
       <div data-testid="list">
         <section>
           <p data-testid="list-name">available pokemons</p>

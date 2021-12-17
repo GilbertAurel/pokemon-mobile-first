@@ -25,11 +25,6 @@ describe('home page', () => {
     expect(screen.getByTestId('header-message')).toBeTruthy();
   });
 
-  it('search section should have search bar and show all button', () => {
-    expect(screen.getByTestId('search-bar')).toBeTruthy();
-    expect(screen.getByTestId('search-all-btn')).toBeTruthy();
-  });
-
   it('list section should have list name, query, and result cards', () => {
     expect(screen.getByTestId('list-name')).toBeTruthy();
     expect(screen.getByTestId('list-query')).toBeTruthy();
