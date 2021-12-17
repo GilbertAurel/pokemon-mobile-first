@@ -21,7 +21,7 @@ type AllThemeType = {
   dark: ThemeType;
 };
 
-const THEME: AllThemeType = {
+export const THEME: AllThemeType = {
   light: {
     colors: {
       primary: '#245F71',
