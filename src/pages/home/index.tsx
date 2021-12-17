@@ -21,12 +21,12 @@ const HomePage: React.FC = () => {
     container: css`
       min-height: 100%;
       max-width: 30rem;
+      padding: 0 2.5rem;
       position: relative;
       margin: auto;
       display: grid;
       grid-auto-rows: 5rem;
       background-color: ${theme.colors.background};
-      color: ${theme.colors.text};
     `,
     cover: css`
       width: 100%;
