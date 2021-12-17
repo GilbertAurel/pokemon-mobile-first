@@ -5,6 +5,7 @@ import React from 'react';
 
 import cover from 'assets/images/cover.webp';
 import SearchWidget from 'components/search';
+import HeaderWidget from 'components/header';
 
 const HomePage: React.FC = () => {
   const theme: any = useTheme();
@@ -19,12 +20,7 @@ const HomePage: React.FC = () => {
   return (
     <div css={styles.container}>
       <img src={cover} alt="cover image" data-testid="cover-img" />
-      <div data-testid="header">
-        <h1 data-testid="header-title">Hi, Welcome to Pokemon Sanctuary!</h1>
-        <p data-testid="header-message">
-          Find your favorite pokemons and make them as your beloved pets!
-        </p>
-      </div>
+      <HeaderWidget />
       <SearchWidget />
       <div data-testid="list">
         <section>

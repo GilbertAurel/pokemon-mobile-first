@@ -20,11 +20,6 @@ describe('home page', () => {
     expect(screen.getByTestId('navbar')).toBeTruthy();
   });
 
-  it('header section should have title and welcome message', () => {
-    expect(screen.getByTestId('header-title')).toBeTruthy();
-    expect(screen.getByTestId('header-message')).toBeTruthy();
-  });
-
   it('list section should have list name, query, and result cards', () => {
     expect(screen.getByTestId('list-name')).toBeTruthy();
     expect(screen.getByTestId('list-query')).toBeTruthy();
