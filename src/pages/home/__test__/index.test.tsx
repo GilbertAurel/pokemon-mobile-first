@@ -12,22 +12,16 @@ describe('home page', () => {
     );
   });
 
-  it('should render header, cover img, search, list, and navbar component', () => {
+  it('should render header, cover img, search, list component', () => {
     expect(screen.getByTestId('header')).toBeTruthy();
     expect(screen.getByTestId('cover-img')).toBeTruthy();
     expect(screen.getByTestId('search')).toBeTruthy();
     expect(screen.getByTestId('list')).toBeTruthy();
-    expect(screen.getByTestId('navbar')).toBeTruthy();
   });
 
   it('list section should have list name, query, and result cards', () => {
     expect(screen.getByTestId('list-name')).toBeTruthy();
     expect(screen.getByTestId('list-query')).toBeTruthy();
     expect(screen.getAllByTestId('list-result-card')).toHaveLength(1);
-  });
-
-  it('navbar section should have total owned pokemon and navigation buttons', () => {
-    expect(screen.getByTestId('navbar-owned')).toBeTruthy();
-    expect(screen.getAllByTestId('navbar-button')).toHaveLength(2);
   });
 });
