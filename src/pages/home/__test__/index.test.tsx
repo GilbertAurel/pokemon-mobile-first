@@ -12,10 +12,16 @@ describe('home page', () => {
     );
   });
 
-  it('should render header, search, list, and navbar component', () => {
+  it('should render header, cover img, search, list, and navbar component', () => {
     expect(screen.getByTestId('header')).toBeTruthy();
+    expect(screen.getByTestId('cover-img')).toBeTruthy();
     expect(screen.getByTestId('search')).toBeTruthy();
     expect(screen.getByTestId('list')).toBeTruthy();
     expect(screen.getByTestId('navbar')).toBeTruthy();
+  });
+
+  it('header should have title and welcome message', () => {
+    expect(screen.getByTestId('header-title')).toBeTruthy();
+    expect(screen.getByTestId('header-message')).toBeTruthy();
   });
 });
