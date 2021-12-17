@@ -18,10 +18,4 @@ describe('home page', () => {
     expect(screen.getByTestId('search')).toBeTruthy();
     expect(screen.getByTestId('list')).toBeTruthy();
   });
-
-  it('list section should have list name, query, and result cards', () => {
-    expect(screen.getByTestId('list-name')).toBeTruthy();
-    expect(screen.getByTestId('list-query')).toBeTruthy();
-    expect(screen.getAllByTestId('list-result-card')).toHaveLength(1);
-  });
 });
