@@ -35,4 +35,9 @@ describe('home page', () => {
     expect(screen.getByTestId('list-query')).toBeTruthy();
     expect(screen.getAllByTestId('list-result-card')).toHaveLength(1);
   });
+
+  it('navbar section should have total owned pokemon and navigation buttons', () => {
+    expect(screen.getByTestId('navbar-owned')).toBeTruthy();
+    expect(screen.getAllByTestId('navbar-button')).toHaveLength(2);
+  });
 });

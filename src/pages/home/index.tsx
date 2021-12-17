@@ -43,7 +43,11 @@ const HomePage: React.FC = () => {
         </section>
         <div data-testid="list-result-card">result card</div>
       </div>
-      <div data-testid="navbar">header</div>
+      <div data-testid="navbar">
+        <div data-testid="navbar-owned">owned pokemons</div>
+        <button data-testid="navbar-button">home</button>
+        <button data-testid="navbar-button">bag</button>
+      </div>
     </div>
   );
 };
