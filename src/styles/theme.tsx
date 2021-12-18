@@ -1,50 +1,8 @@
 import { ThemeProvider } from '@emotion/react';
 import { useToggleTheme } from 'lib/useToggleTheme';
 import React from 'react';
-
-export type ThemeSelections = 'light' | 'dark';
-
-type ThemeType = {
-  colors: {
-    primary: string;
-    secondary: string;
-    buttonBright: string;
-    background: string;
-    text: string;
-    grayed: string;
-    delete: string;
-  };
-};
-
-type AllThemeType = {
-  light: ThemeType;
-  dark: ThemeType;
-};
-
-const THEME: AllThemeType = {
-  light: {
-    colors: {
-      primary: '#245F71',
-      secondary: '#5BA3B3',
-      buttonBright: '#E1F5F6',
-      background: '#FFFFFF',
-      text: '#0F3E51',
-      grayed: '#BCBCBC',
-      delete: '#FB3232',
-    },
-  },
-  dark: {
-    colors: {
-      primary: '#245F71',
-      secondary: '#5BA3B3',
-      buttonBright: '#E1F5F6',
-      background: '#000000',
-      text: '#0F3E51',
-      grayed: '#BCBCBC',
-      delete: '#FB3232',
-    },
-  },
-};
+import { ThemeSelections } from './models';
+import { THEME } from './_base';
 
 interface Props {
   children: React.ReactNode;
@@ -52,8 +10,9 @@ interface Props {
 
 const ThemeContainer: React.FC<Props> = ({ children }) => {
   const [type] = useToggleTheme();
+  const theme: ThemeSelections = type;
 
-  return <ThemeProvider theme={THEME[type]}>{children}</ThemeProvider>;
+  return <ThemeProvider theme={THEME[theme]}>{children}</ThemeProvider>;
 };
 
 export default ThemeContainer;
