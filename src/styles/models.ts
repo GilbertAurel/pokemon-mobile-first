@@ -19,7 +19,7 @@ export type FontType = {
 
 export type ThemeType = {
   colors: ColorsType;
-  font: FontType;
+  fonts: FontType;
 };
 
 export type AllThemeType = {

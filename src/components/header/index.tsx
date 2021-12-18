@@ -20,13 +20,13 @@ const HeaderWidget: React.FC = () => {
       margin: 0;
       padding: 0;
       line-height: 33px;
-      font-size: ${theme.font.title};
+      font-size: ${theme.fonts.title};
     `,
     message: css`
       max-width: 40ch;
       margin: 0;
       padding: 0;
-      font-size: ${theme.font.body};
+      font-size: ${theme.fonts.body};
     `,
   };
 

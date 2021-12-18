@@ -18,7 +18,7 @@ export const THEME: AllThemeType = {
       grayed: '#BCBCBC',
       delete: '#FB3232',
     },
-    font: FONTS,
+    fonts: FONTS,
   },
   dark: {
     colors: {
@@ -30,6 +30,6 @@ export const THEME: AllThemeType = {
       grayed: '#BCBCBC',
       delete: '#FB3232',
     },
-    font: FONTS,
+    fonts: FONTS,
   },
 };
