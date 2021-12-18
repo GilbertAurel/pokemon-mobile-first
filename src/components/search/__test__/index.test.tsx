@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@emotion/react';
 import { render, screen } from '@testing-library/react';
-import { THEME } from 'styles/theme';
+import { THEME } from 'styles/_base';
 import SearchWidget from '..';
 
 describe('search widget component', () => {

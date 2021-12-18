@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ThemeSelections } from 'styles/theme';
+import { ThemeSelections } from 'styles/models';
 
 export const useToggleTheme = (): [ThemeSelections, () => void] => {
   const [theme, setTheme] = useState<ThemeSelections>('light');
