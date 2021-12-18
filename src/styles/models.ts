@@ -11,7 +11,6 @@ type ColorsType = {
 };
 
 export type FontType = {
-  button: string;
   body: string;
   headline: string;
   title: string;

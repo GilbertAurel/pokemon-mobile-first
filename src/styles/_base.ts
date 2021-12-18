@@ -1,7 +1,6 @@
 import { AllThemeType, FontType } from './models';
 
 const FONTS: FontType = {
-  button: '0.6875rem',
   body: '0.75rem',
   headline: '1rem',
   title: '1.5rem',
