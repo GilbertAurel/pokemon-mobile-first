@@ -29,15 +29,8 @@ const HomePage: React.FC = () => {
     }
   }, [data]);
 
-  const scrollHandler = (event: any) => {
-    console.log('here');
-    const atBottom =
-      event.target.scrollHeight - event.target.scrollTop ===
-      event.target.clientHeight;
-
-    if (atBottom) {
-      return setPage(page + 10);
-    }
+  const scrollHandler = () => {
+    setPage(page + 10);
   };
 
   const styles = {

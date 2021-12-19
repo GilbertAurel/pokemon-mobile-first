@@ -36,7 +36,7 @@ const PokemonListCard: React.FC<Props> = ({ name, image }) => {
 
   return (
     <div css={styles.container} data-testid="list-result-card">
-      <img css={styles.image} src={image} alt="pokemon" />
+      <img css={styles.image} src={image} alt="" />
       <p css={styles.name}>{name}</p>
     </div>
   );

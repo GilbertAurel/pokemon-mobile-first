@@ -11,7 +11,7 @@ import LoadingSpinner from 'components/loading-spinner';
 
 interface Props {
   pokemons: PokemonListType[];
-  loadNewPokemon: (event: any) => void;
+  loadNewPokemon: () => void;
 }
 
 const PokemonListWidget: React.FC<Props> = ({ pokemons, loadNewPokemon }) => {
@@ -19,8 +19,15 @@ const PokemonListWidget: React.FC<Props> = ({ pokemons, loadNewPokemon }) => {
   const [loading, setLoading] = useState(false);
 
   const scrollHandler = (event: any) => {
-    setLoading(true);
-    loadNewPokemon(event);
+    const atBottom =
+      event.target.scrollHeight -
+      event.target.scrollTop -
+      event.target.clientHeight;
+
+    if (atBottom < 5) {
+      setLoading(true);
+      return loadNewPokemon();
+    }
   };
 
   const styles = {
