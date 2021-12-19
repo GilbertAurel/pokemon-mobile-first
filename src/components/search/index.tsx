@@ -74,7 +74,7 @@ const SearchWidget: React.FC<Props> = ({ searchHandler, showAllHandler }) => {
       font-size: ${theme.fonts.body};
 
       :active {
-        scale: 0.9;
+        transform: scale(0.9);
       }
     `,
   };

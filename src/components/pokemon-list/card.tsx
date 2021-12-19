@@ -26,7 +26,7 @@ const PokemonListCard: React.FC<Props> = ({ name, image }) => {
       box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
 
       :active {
-        scale: 0.9;
+        transform: scale(0.9);
       }
     `,
     link: css`
