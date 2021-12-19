@@ -105,9 +105,11 @@ const PokemonListWidget: React.FC<Props> = ({ pokemons, loadNewPokemon }) => {
         />
       ))}
       {loading && <LoadingSpinner />}
-      <button css={styles.backToTopBtn} onClick={backToTopHandler}>
-        scroll up
-      </button>
+      {loading && (
+        <button css={styles.backToTopBtn} onClick={backToTopHandler}>
+          scroll up
+        </button>
+      )}
     </div>
   );
 };
