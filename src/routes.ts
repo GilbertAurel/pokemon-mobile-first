@@ -15,7 +15,7 @@ export const ROUTES: IRoute[] = [
     component: HomePage,
   },
   {
-    path: '/details/:pokemonId',
+    path: '/details/:pokemonName',
     component: DetailsPage,
   },
   {
