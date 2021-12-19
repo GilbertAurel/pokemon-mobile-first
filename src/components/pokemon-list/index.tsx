@@ -11,10 +11,15 @@ import LoadingSpinner from 'components/loading-spinner';
 
 interface Props {
   pokemons: PokemonListType[];
+  search: boolean;
   loadNewPokemon: () => void;
 }
 
-const PokemonListWidget: React.FC<Props> = ({ pokemons, loadNewPokemon }) => {
+const PokemonListWidget: React.FC<Props> = ({
+  pokemons,
+  search,
+  loadNewPokemon,
+}) => {
   const theme: any = useTheme();
   const listRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(false);
@@ -94,22 +99,24 @@ const PokemonListWidget: React.FC<Props> = ({ pokemons, loadNewPokemon }) => {
         <p data-testid="list-name">available pokemons</p>
         <p data-testid="list-query">search: all pokemons</p>
       </section>
-      {pokemons.length === 0 && (
+      {pokemons.length > 0 && pokemons[0].id === 0 ? (
         <AlertMessage msg="Pokemon not found!" icon={alertImage} />
+      ) : (
+        pokemons.map((pokemon) => (
+          <PokemonListCard
+            key={pokemon.id}
+            name={pokemon.name}
+            image={pokemon.image}
+          />
+        ))
       )}
-      {pokemons.map((pokemon) => (
-        <PokemonListCard
-          key={pokemon.id}
-          name={pokemon.name}
-          image={pokemon.image}
-        />
-      ))}
-      {loading && <LoadingSpinner />}
-      {loading && (
+      {loading && !search && <LoadingSpinner />}
+      {loading && !search && (
         <button css={styles.backToTopBtn} onClick={backToTopHandler}>
           scroll up
         </button>
       )}
+      {search && <AlertMessage msg={`found ${pokemons.length} pokemon`} />}
     </div>
   );
 };

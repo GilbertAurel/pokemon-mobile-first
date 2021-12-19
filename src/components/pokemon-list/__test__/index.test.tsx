@@ -8,7 +8,11 @@ describe('pokemon list widget component', () => {
   it('should have list name, query, and result cards', () => {
     render(
       <ThemeProvider theme={THEME.light}>
-        <PokemonListWidget pokemons={MOCK_POKEMON} loadNewPokemon={() => {}} />
+        <PokemonListWidget
+          pokemons={MOCK_POKEMON}
+          search={false}
+          loadNewPokemon={() => {}}
+        />
       </ThemeProvider>
     );
 
@@ -22,7 +26,17 @@ describe('pokemon list widget component', () => {
   it('should render alert message if pokemon is empty', () => {
     render(
       <ThemeProvider theme={THEME.light}>
-        <PokemonListWidget pokemons={[]} loadNewPokemon={() => {}} />
+        <PokemonListWidget
+          pokemons={[
+            {
+              id: 0,
+              name: '',
+              image: '',
+            },
+          ]}
+          search={false}
+          loadNewPokemon={() => {}}
+        />
       </ThemeProvider>
     );
 
