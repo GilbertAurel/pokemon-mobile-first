@@ -1,47 +1,44 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx, useTheme } from '@emotion/react';
-import React, { useEffect, useState } from 'react';
-import { useQuery } from '@apollo/client';
+import React from 'react';
 
 import SearchWidget from 'components/search';
 import HeaderWidget from 'components/header';
 import PokemonListWidget from 'components/pokemon-list';
 import NavbarWidget from 'components/navbar';
-import AlertMessage from 'components/alert';
 
-import { PokemonListType } from 'models/pokemon';
-import { GET_ALL_POKEMONS } from 'lib/apiQueries';
 import cover from 'assets/images/cover.webp';
-import alertImage from 'assets/icons/warning.svg';
+import { useSearchPokemon } from 'lib/useSearchPokemon';
+import { useGetAllPokemons } from 'lib/useGetAllPokemons';
+import LoadingSpinner from 'components/loading-spinner';
 
 const HomePage: React.FC = () => {
   const theme: any = useTheme();
-  const [pokemons, setPokemons] = useState<PokemonListType[]>([]);
-  const { loading, error, data } = useQuery(GET_ALL_POKEMONS, {
-    variables: { limit: 10, offset: 0 },
-  });
-
-  useEffect(() => {
-    if (loading === false) {
-      setPokemons([...pokemons, ...data.pokemons.results]);
-    }
-  }, [data]);
+  const [
+    searchResult,
+    searchHandler,
+    resetSearchResult,
+    search,
+    searchLoading,
+  ] = useSearchPokemon();
+  const [pokemons, loadNextPokemons] = useGetAllPokemons();
 
   const styles = {
     wrapper: css`
+      height: 100vh;
       width: 100vw;
       background-color: ${theme.colors.grayed};
     `,
     container: css`
-      min-height: 100%;
+      height: 100%;
       max-width: 30rem;
       padding: 0 2.5rem;
       position: relative;
       margin: auto;
       display: grid;
-      overflow-y: scroll;
-      grid-auto-rows: minmax(5rem, max-content);
+      overflow-y: hidden;
+      grid-template-rows: repeat(4, 5rem) 1fr 5rem;
       background-color: ${theme.colors.background};
     `,
     cover: css`
@@ -57,11 +54,19 @@ const HomePage: React.FC = () => {
       <div css={styles.container}>
         <img css={styles.cover} src={cover} alt="cover" />
         <HeaderWidget />
-        <SearchWidget />
-        {error !== undefined ? (
-          <AlertMessage msg="error" icon={alertImage} />
+        <SearchWidget
+          searchHandler={searchHandler}
+          showAllHandler={resetSearchResult}
+        />
+        {searchLoading ? (
+          <LoadingSpinner />
         ) : (
-          <PokemonListWidget pokemons={pokemons} />
+          <PokemonListWidget
+            pokemons={searchResult.length > 0 ? searchResult : pokemons}
+            search={searchResult.length > 0}
+            loadNewPokemon={loadNextPokemons}
+            query={searchResult.length > 0 ? search : 'all pokemons'}
+          />
         )}
         <NavbarWidget />
       </div>

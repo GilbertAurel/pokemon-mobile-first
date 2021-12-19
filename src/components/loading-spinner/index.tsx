@@ -2,28 +2,33 @@
 /** @jsx jsx */
 import { css, jsx, useTheme } from '@emotion/react';
 import React from 'react';
+import loadingIcon from 'assets/icons/loading.svg';
 
-interface Props {
-  msg: string;
-  icon?: string;
-}
-
-const AlertMessage: React.FC<Props> = ({ msg, icon }) => {
+const LoadingSpinner: React.FC = () => {
   const theme: any = useTheme();
 
   const styles = {
     container: css`
-      grid-row: span 3;
       justify-self: center;
       align-self: center;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
+      gap: 0.5rem;
     `,
     icon: css`
-      height: 4rem;
-      width: 4rem;
+      animation: rotation 2s infinite linear;
+      height: 1.5rem;
+      width: 1.5rem;
+
+      @keyframes rotation {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(359deg);
+        }
+      }
     `,
     msg: css`
       color: ${theme.colors.grayed};
@@ -33,10 +38,10 @@ const AlertMessage: React.FC<Props> = ({ msg, icon }) => {
 
   return (
     <div css={styles.container}>
-      {icon && <img css={styles.icon} src={icon} alt="" />}
-      <p css={styles.msg}>{msg}</p>
+      <img css={styles.icon} src={loadingIcon} alt="" />
+      <p css={styles.msg}>searching for pokemons..</p>
     </div>
   );
 };
 
-export default AlertMessage;
+export default LoadingSpinner;

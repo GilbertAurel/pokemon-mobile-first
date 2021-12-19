@@ -7,7 +7,7 @@ describe('search widget component', () => {
   beforeEach(() =>
     render(
       <ThemeProvider theme={THEME.light}>
-        <SearchWidget />
+        <SearchWidget searchHandler={() => {}} showAllHandler={() => {}} />
       </ThemeProvider>
     )
   );
