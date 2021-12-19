@@ -54,6 +54,11 @@ const NavbarWidget: React.FC = () => {
       background-color: transparent;
       border: none;
 
+      img {
+        height: 1.25rem;
+        width: 1.25rem;
+      }
+
       p {
         padding: 0;
         margin: 0;
