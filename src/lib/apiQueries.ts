@@ -24,3 +24,35 @@ export const SEARCH_POKEMON = gql`
     }
   }
 `;
+
+export const GET_POKEMON_DETAILS = gql`
+  query GetPokemonDetails($name: String!) {
+    pokemon(name: $name) {
+      name
+      moves {
+        move {
+          name
+        }
+      }
+      types {
+        type {
+          name
+        }
+      }
+      weight
+      abilities {
+        ability {
+          name
+        }
+      }
+      base_experience
+      height
+      stats {
+        base_stat
+        stat {
+          name
+        }
+      }
+    }
+  }
+`;
