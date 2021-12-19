@@ -14,13 +14,13 @@ import { PokemonListType } from 'models/pokemon';
 import { GET_ALL_POKEMONS } from 'lib/apiQueries';
 import cover from 'assets/images/cover.webp';
 import alertImage from 'assets/icons/warning.svg';
-import LoadingSpinner from 'components/loading-spinner';
 
 const HomePage: React.FC = () => {
   const theme: any = useTheme();
   const [pokemons, setPokemons] = useState<PokemonListType[]>([]);
+  const [page, setPage] = useState(0);
   const { loading, error, data } = useQuery(GET_ALL_POKEMONS, {
-    variables: { limit: 10, offset: 0 },
+    variables: { limit: 10, offset: page },
   });
 
   useEffect(() => {
@@ -29,20 +29,32 @@ const HomePage: React.FC = () => {
     }
   }, [data]);
 
+  const scrollHandler = (event: any) => {
+    console.log('here');
+    const atBottom =
+      event.target.scrollHeight - event.target.scrollTop ===
+      event.target.clientHeight;
+
+    if (atBottom) {
+      return setPage(page + 10);
+    }
+  };
+
   const styles = {
     wrapper: css`
+      height: 100vh;
       width: 100vw;
       background-color: ${theme.colors.grayed};
     `,
     container: css`
-      min-height: 100%;
+      height: 100%;
       max-width: 30rem;
       padding: 0 2.5rem;
       position: relative;
       margin: auto;
       display: grid;
-      overflow-y: scroll;
-      grid-auto-rows: minmax(5rem, max-content);
+      overflow-y: hidden;
+      grid-template-rows: repeat(4, 5rem) 1fr 5rem;
       background-color: ${theme.colors.background};
     `,
     cover: css`
@@ -61,12 +73,14 @@ const HomePage: React.FC = () => {
         <SearchWidget />
         {error !== undefined ? (
           <AlertMessage msg="error" icon={alertImage} />
-        ) : loading ? (
-          <LoadingSpinner />
         ) : (
-          <PokemonListWidget pokemons={pokemons} />
+          <PokemonListWidget
+            pokemons={pokemons}
+            loadNewPokemon={scrollHandler}
+          />
         )}
         <NavbarWidget />
+        <button onClick={() => setPage(page + 10)}>more</button>
       </div>
     </div>
   );

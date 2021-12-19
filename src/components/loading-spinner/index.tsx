@@ -9,18 +9,17 @@ const LoadingSpinner: React.FC = () => {
 
   const styles = {
     container: css`
-      grid-row: span 3;
       justify-self: center;
       align-self: center;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
+      gap: 0.5rem;
     `,
     icon: css`
       animation: rotation 2s infinite linear;
-      height: 4rem;
-      width: 4rem;
+      height: 1.5rem;
+      width: 1.5rem;
 
       @keyframes rotation {
         from {

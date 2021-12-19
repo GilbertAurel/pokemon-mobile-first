@@ -13,6 +13,8 @@ const PokemonListCard: React.FC<Props> = ({ name, image }) => {
 
   const styles = {
     container: css`
+      width: 95%;
+      justify-self: center;
       display: flex;
       align-items: center;
       gap: 1rem;
