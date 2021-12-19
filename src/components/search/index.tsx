@@ -4,9 +4,21 @@ import { css, jsx, useTheme } from '@emotion/react';
 import React from 'react';
 
 import searchIcon from 'assets/icons/search.svg';
+import useForm from 'lib/useForm';
 
-const SearchWidget: React.FC = () => {
+interface Props {
+  searchHandler: (value: string) => void;
+  showAllHandler: () => void;
+}
+
+const SearchWidget: React.FC<Props> = ({ searchHandler, showAllHandler }) => {
   const theme: any = useTheme();
+  const [value, setValue] = useForm({ initialValue: '' });
+
+  const submitBtnHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    searchHandler(value.name);
+  };
 
   const styles = {
     container: css`
@@ -69,19 +81,29 @@ const SearchWidget: React.FC = () => {
 
   return (
     <div css={styles.container} data-testid="search">
-      <form css={styles.search} data-testid="search-bar">
+      <form
+        css={styles.search}
+        onSubmit={(e) => submitBtnHandler(e)}
+        data-testid="search-bar"
+      >
         <section css={styles.searchBar}>
           <input
             type="text"
             name="name"
             id="pokemon-name"
+            value={value.name}
+            onChange={(e) => setValue(e)}
             placeholder="search by pokemon name.."
           />
           <img src={searchIcon} alt="search icon" />
         </section>
         <button css={styles.searchSubmitBtn} type="submit"></button>
       </form>
-      <button css={styles.showAllBtn} data-testid="search-all-btn">
+      <button
+        css={styles.showAllBtn}
+        onClick={showAllHandler}
+        data-testid="search-all-btn"
+      >
         show all
       </button>
     </div>

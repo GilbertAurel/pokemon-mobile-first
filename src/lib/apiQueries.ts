@@ -11,3 +11,15 @@ export const GET_ALL_POKEMONS = gql`
     }
   }
 `;
+
+export const SEARCH_POKEMON = gql`
+  query SearchPokemon($name: String!) {
+    pokemon(name: $name) {
+      name
+      id
+      sprites {
+        front_default
+      }
+    }
+  }
+`;
