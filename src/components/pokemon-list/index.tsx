@@ -1,11 +1,18 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx, useTheme } from '@emotion/react';
-import { MOCK_POKEMON } from 'mocks/pokemon';
 import React from 'react';
-import PokemonListCard from './card';
 
-const PokemonListWidget: React.FC = () => {
+import AlertMessage from 'components/alert';
+import { PokemonListType } from 'models/pokemon';
+import PokemonListCard from './card';
+import alertImage from 'assets/icons/warning.svg';
+
+interface Props {
+  pokemons: PokemonListType[];
+}
+
+const PokemonListWidget: React.FC<Props> = ({ pokemons }) => {
   const theme: any = useTheme();
 
   const styles = {
@@ -29,7 +36,10 @@ const PokemonListWidget: React.FC = () => {
         <p data-testid="list-name">available pokemons</p>
         <p data-testid="list-query">search: all pokemons</p>
       </section>
-      {MOCK_POKEMON.map((pokemon) => (
+      {pokemons.length === 0 && (
+        <AlertMessage msg="Pokemon not found!" icon={alertImage} />
+      )}
+      {pokemons.map((pokemon) => (
         <PokemonListCard
           key={pokemon.id}
           name={pokemon.name}

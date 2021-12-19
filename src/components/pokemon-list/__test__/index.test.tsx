@@ -5,19 +5,27 @@ import { THEME } from 'styles/_base';
 import PokemonListWidget from '..';
 
 describe('pokemon list widget component', () => {
-  beforeEach(() =>
+  it('should have list name, query, and result cards', () => {
     render(
       <ThemeProvider theme={THEME.light}>
-        <PokemonListWidget />
+        <PokemonListWidget pokemons={MOCK_POKEMON} />
       </ThemeProvider>
-    )
-  );
+    );
 
-  it('list section should have list name, query, and result cards', () => {
     expect(screen.getByTestId('list-name')).toBeTruthy();
     expect(screen.getByTestId('list-query')).toBeTruthy();
     expect(screen.getAllByTestId('list-result-card')).toHaveLength(
       MOCK_POKEMON.length
     );
+  });
+
+  it('should render alert message if pokemon is empty', () => {
+    render(
+      <ThemeProvider theme={THEME.light}>
+        <PokemonListWidget pokemons={[]} />
+      </ThemeProvider>
+    );
+
+    expect(screen.queryByText('Pokemon not found!')).toBeTruthy();
   });
 });
