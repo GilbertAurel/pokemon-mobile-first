@@ -13,7 +13,7 @@ interface Props {
 
 const SearchWidget: React.FC<Props> = ({ searchHandler, showAllHandler }) => {
   const theme: any = useTheme();
-  const [value, setValue] = useForm({ initialValue: '' });
+  const [value, setValue] = useForm({ initialValue: { name: '' } });
 
   const submitBtnHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
