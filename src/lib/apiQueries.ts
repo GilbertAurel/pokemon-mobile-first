@@ -8,6 +8,7 @@ export const GET_ALL_POKEMONS = gql`
         image
         id
       }
+      nextOffset
     }
   }
 `;

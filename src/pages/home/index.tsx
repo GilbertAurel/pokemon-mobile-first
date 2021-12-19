@@ -1,37 +1,21 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx, useTheme } from '@emotion/react';
-import React, { useEffect, useState } from 'react';
-import { useQuery } from '@apollo/client';
+import React from 'react';
 
 import SearchWidget from 'components/search';
 import HeaderWidget from 'components/header';
 import PokemonListWidget from 'components/pokemon-list';
 import NavbarWidget from 'components/navbar';
-import AlertMessage from 'components/alert';
 
-import { PokemonListType } from 'models/pokemon';
-import { GET_ALL_POKEMONS } from 'lib/apiQueries';
 import cover from 'assets/images/cover.webp';
-import alertImage from 'assets/icons/warning.svg';
+import { useSearchPokemon } from 'lib/useSearchPokemon';
+import { useGetAllPokemons } from 'lib/useGetAllPokemons';
 
 const HomePage: React.FC = () => {
   const theme: any = useTheme();
-  const [pokemons, setPokemons] = useState<PokemonListType[]>([]);
-  const [page, setPage] = useState(0);
-  const { loading, error, data } = useQuery(GET_ALL_POKEMONS, {
-    variables: { limit: 10, offset: page },
-  });
-
-  useEffect(() => {
-    if (loading === false) {
-      setPokemons([...pokemons, ...data.pokemons.results]);
-    }
-  }, [data]);
-
-  const scrollHandler = () => {
-    setPage(page + 10);
-  };
+  const [searchResult, searchHandler, resetSearchResult] = useSearchPokemon();
+  const [pokemons, loadNextPokemons] = useGetAllPokemons();
 
   const styles = {
     wrapper: css`
@@ -63,15 +47,15 @@ const HomePage: React.FC = () => {
       <div css={styles.container}>
         <img css={styles.cover} src={cover} alt="cover" />
         <HeaderWidget />
-        <SearchWidget />
-        {error !== undefined ? (
-          <AlertMessage msg="error" icon={alertImage} />
-        ) : (
-          <PokemonListWidget
-            pokemons={pokemons}
-            loadNewPokemon={scrollHandler}
-          />
-        )}
+        <SearchWidget
+          searchHandler={searchHandler}
+          showAllHandler={resetSearchResult}
+        />
+        <PokemonListWidget
+          pokemons={searchResult.length > 0 ? searchResult : pokemons}
+          search={searchResult.length > 0}
+          loadNewPokemon={loadNextPokemons}
+        />
         <NavbarWidget />
       </div>
     </div>
