@@ -7,7 +7,8 @@ export const useSearchPokemon = (): [
   PokemonListType[],
   (value: string) => void,
   () => void,
-  string
+  string,
+  boolean
 ] => {
   const initialRender = useRef(true);
   const [searchResult, setSearchResult] = useState<PokemonListType[]>([]);
@@ -41,8 +42,13 @@ export const useSearchPokemon = (): [
 
   const resetSearchResult = () => {
     setSearchResult([]);
-    setSearchValue('');
   };
 
-  return [searchResult, searchPokemonHandler, resetSearchResult, searchValue];
+  return [
+    searchResult,
+    searchPokemonHandler,
+    resetSearchResult,
+    searchValue,
+    loading,
+  ];
 };

@@ -11,11 +11,17 @@ import NavbarWidget from 'components/navbar';
 import cover from 'assets/images/cover.webp';
 import { useSearchPokemon } from 'lib/useSearchPokemon';
 import { useGetAllPokemons } from 'lib/useGetAllPokemons';
+import LoadingSpinner from 'components/loading-spinner';
 
 const HomePage: React.FC = () => {
   const theme: any = useTheme();
-  const [searchResult, searchHandler, resetSearchResult, search] =
-    useSearchPokemon();
+  const [
+    searchResult,
+    searchHandler,
+    resetSearchResult,
+    search,
+    searchLoading,
+  ] = useSearchPokemon();
   const [pokemons, loadNextPokemons] = useGetAllPokemons();
 
   const styles = {
@@ -52,12 +58,16 @@ const HomePage: React.FC = () => {
           searchHandler={searchHandler}
           showAllHandler={resetSearchResult}
         />
-        <PokemonListWidget
-          pokemons={searchResult.length > 0 ? searchResult : pokemons}
-          search={searchResult.length > 0}
-          loadNewPokemon={loadNextPokemons}
-          query={search !== '' ? search : 'all pokemons'}
-        />
+        {searchLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <PokemonListWidget
+            pokemons={searchResult.length > 0 ? searchResult : pokemons}
+            search={searchResult.length > 0}
+            loadNewPokemon={loadNextPokemons}
+            query={searchResult.length > 0 ? search : 'all pokemons'}
+          />
+        )}
         <NavbarWidget />
       </div>
     </div>
