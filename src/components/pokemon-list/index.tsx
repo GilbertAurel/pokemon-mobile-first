@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx, useTheme } from '@emotion/react';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import AlertMessage from 'components/alert';
 import { PokemonListType } from 'models/pokemon';
@@ -16,6 +16,7 @@ interface Props {
 
 const PokemonListWidget: React.FC<Props> = ({ pokemons, loadNewPokemon }) => {
   const theme: any = useTheme();
+  const listRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(false);
 
   const scrollHandler = (event: any) => {
@@ -30,6 +31,12 @@ const PokemonListWidget: React.FC<Props> = ({ pokemons, loadNewPokemon }) => {
     }
   };
 
+  const backToTopHandler = () => {
+    if (listRef.current) {
+      listRef.current.scrollTop = 0;
+    }
+  };
+
   const styles = {
     container: css`
       display: grid;
@@ -37,6 +44,7 @@ const PokemonListWidget: React.FC<Props> = ({ pokemons, loadNewPokemon }) => {
       gap: 0.75rem;
       position: relative;
       overflow-y: scroll;
+      scroll-behavior: smooth;
 
       -ms-overflow-style: none;
       scrollbar-width: none;
@@ -56,11 +64,29 @@ const PokemonListWidget: React.FC<Props> = ({ pokemons, loadNewPokemon }) => {
       color: ${theme.colors.grayed};
       font-size: ${theme.fonts.body};
     `,
+    backToTopBtn: css`
+      width: 4rem;
+      height: 4rem;
+      position: sticky;
+      right: 0;
+      bottom: 1rem;
+      justify-self: flex-end;
+      background-color: ${theme.colors.buttonBright};
+      border: none;
+      border-radius: 50%;
+      color: ${theme.colors.primary};
+      font-size: ${theme.fonts.button};
+
+      :active {
+        scale: 0.9;
+      }
+    `,
   };
 
   return (
     <div
       css={styles.container}
+      ref={listRef}
       onScroll={(event) => scrollHandler(event)}
       data-testid="list"
     >
@@ -79,6 +105,9 @@ const PokemonListWidget: React.FC<Props> = ({ pokemons, loadNewPokemon }) => {
         />
       ))}
       {loading && <LoadingSpinner />}
+      <button css={styles.backToTopBtn} onClick={backToTopHandler}>
+        scroll up
+      </button>
     </div>
   );
 };
