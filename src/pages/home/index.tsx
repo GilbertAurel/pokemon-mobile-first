@@ -14,7 +14,6 @@ const HomePage: React.FC = () => {
 
   const styles = {
     wrapper: css`
-      height: 100vh;
       width: 100vw;
       background-color: ${theme.colors.grayed};
     `,
@@ -25,7 +24,8 @@ const HomePage: React.FC = () => {
       position: relative;
       margin: auto;
       display: grid;
-      grid-auto-rows: 5rem;
+      overflow-y: scroll;
+      grid-auto-rows: minmax(5rem, max-content);
       background-color: ${theme.colors.background};
     `,
     cover: css`
@@ -39,12 +39,7 @@ const HomePage: React.FC = () => {
   return (
     <div css={styles.wrapper}>
       <div css={styles.container}>
-        <img
-          css={styles.cover}
-          src={cover}
-          alt="cover image"
-          data-testid="cover-img"
-        />
+        <img css={styles.cover} src={cover} alt="cover" />
         <HeaderWidget />
         <SearchWidget />
         <PokemonListWidget />

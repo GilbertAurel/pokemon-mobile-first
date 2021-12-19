@@ -12,9 +12,8 @@ describe('home page', () => {
     );
   });
 
-  it('should render header, cover img, search, list component', () => {
+  it('should render header, search, list component', () => {
     expect(screen.getByTestId('header')).toBeTruthy();
-    expect(screen.getByTestId('cover-img')).toBeTruthy();
     expect(screen.getByTestId('search')).toBeTruthy();
     expect(screen.getByTestId('list')).toBeTruthy();
     expect(screen.getByTestId('navbar')).toBeTruthy();
