@@ -116,7 +116,9 @@ const PokemonListWidget: React.FC<Props> = ({
           scroll up
         </button>
       )}
-      {search && <AlertMessage msg={`found ${pokemons.length} pokemon`} />}
+      {search && pokemons[0].id !== 0 && (
+        <AlertMessage msg={`found ${pokemons.length} pokemon`} />
+      )}
     </div>
   );
 };
