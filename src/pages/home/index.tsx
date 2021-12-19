@@ -80,7 +80,6 @@ const HomePage: React.FC = () => {
           />
         )}
         <NavbarWidget />
-        <button onClick={() => setPage(page + 10)}>more</button>
       </div>
     </div>
   );
