@@ -1,6 +1,6 @@
-import { PokemonList } from 'models/pokemon';
+import { PokemonListType } from 'models/pokemon';
 
-export const MOCK_POKEMON: PokemonList[] = [
+export const MOCK_POKEMON: PokemonListType[] = [
   {
     name: 'venusaur',
     image:
