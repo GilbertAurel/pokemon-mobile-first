@@ -1,16 +1,29 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx, useTheme } from '@emotion/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import cover from 'assets/images/cover.webp';
 import SearchWidget from 'components/search';
 import HeaderWidget from 'components/header';
 import PokemonListWidget from 'components/pokemon-list';
 import NavbarWidget from 'components/navbar';
+import { useQuery } from '@apollo/client';
+import { GET_ALL_POKEMONS } from 'lib/apiQueries';
+import { PokemonListType } from 'models/pokemon';
 
 const HomePage: React.FC = () => {
   const theme: any = useTheme();
+  const [pokemons, setPokemons] = useState<PokemonListType[]>([]);
+  const { loading, error, data } = useQuery(GET_ALL_POKEMONS, {
+    variables: { limit: 10, offset: 0 },
+  });
+
+  useEffect(() => {
+    if (loading === false) {
+      setPokemons([...pokemons, ...data.pokemons.results]);
+    }
+  }, [data]);
 
   const styles = {
     wrapper: css`
@@ -42,7 +55,11 @@ const HomePage: React.FC = () => {
         <img css={styles.cover} src={cover} alt="cover" />
         <HeaderWidget />
         <SearchWidget />
-        <PokemonListWidget />
+        {error !== undefined ? (
+          <h1>error</h1>
+        ) : (
+          <PokemonListWidget pokemons={pokemons} />
+        )}
         <NavbarWidget />
       </div>
     </div>
