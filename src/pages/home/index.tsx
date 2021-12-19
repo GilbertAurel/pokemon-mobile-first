@@ -2,15 +2,18 @@
 /** @jsx jsx */
 import { css, jsx, useTheme } from '@emotion/react';
 import React, { useEffect, useState } from 'react';
+import { useQuery } from '@apollo/client';
 
-import cover from 'assets/images/cover.webp';
 import SearchWidget from 'components/search';
 import HeaderWidget from 'components/header';
 import PokemonListWidget from 'components/pokemon-list';
 import NavbarWidget from 'components/navbar';
-import { useQuery } from '@apollo/client';
-import { GET_ALL_POKEMONS } from 'lib/apiQueries';
+import AlertMessage from 'components/alert';
+
 import { PokemonListType } from 'models/pokemon';
+import { GET_ALL_POKEMONS } from 'lib/apiQueries';
+import cover from 'assets/images/cover.webp';
+import alertImage from 'assets/icons/warning.svg';
 
 const HomePage: React.FC = () => {
   const theme: any = useTheme();
@@ -56,7 +59,7 @@ const HomePage: React.FC = () => {
         <HeaderWidget />
         <SearchWidget />
         {error !== undefined ? (
-          <h1>error</h1>
+          <AlertMessage msg="error" icon={alertImage} />
         ) : (
           <PokemonListWidget pokemons={pokemons} />
         )}
