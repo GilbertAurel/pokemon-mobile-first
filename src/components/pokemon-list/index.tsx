@@ -13,12 +13,14 @@ interface Props {
   pokemons: PokemonListType[];
   search: boolean;
   loadNewPokemon: () => void;
+  query?: string;
 }
 
 const PokemonListWidget: React.FC<Props> = ({
   pokemons,
   search,
   loadNewPokemon,
+  query = 'all pokemons',
 }) => {
   const theme: any = useTheme();
   const listRef = useRef<HTMLDivElement>(null);
@@ -97,7 +99,7 @@ const PokemonListWidget: React.FC<Props> = ({
     >
       <section css={styles.details}>
         <p data-testid="list-name">available pokemons</p>
-        <p data-testid="list-query">search: all pokemons</p>
+        <p data-testid="list-query">search: {query}</p>
       </section>
       {pokemons.length > 0 && pokemons[0].id === 0 ? (
         <AlertMessage msg="Pokemon not found!" icon={alertImage} />

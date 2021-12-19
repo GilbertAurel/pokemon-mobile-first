@@ -14,7 +14,8 @@ import { useGetAllPokemons } from 'lib/useGetAllPokemons';
 
 const HomePage: React.FC = () => {
   const theme: any = useTheme();
-  const [searchResult, searchHandler, resetSearchResult] = useSearchPokemon();
+  const [searchResult, searchHandler, resetSearchResult, search] =
+    useSearchPokemon();
   const [pokemons, loadNextPokemons] = useGetAllPokemons();
 
   const styles = {
@@ -55,6 +56,7 @@ const HomePage: React.FC = () => {
           pokemons={searchResult.length > 0 ? searchResult : pokemons}
           search={searchResult.length > 0}
           loadNewPokemon={loadNextPokemons}
+          query={search !== '' ? search : 'all pokemons'}
         />
         <NavbarWidget />
       </div>
