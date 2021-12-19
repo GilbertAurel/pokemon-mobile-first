@@ -7,6 +7,7 @@ import {
   GET_ALL_POKEMONS_MOCKS_SUCCESS,
 } from './mocks';
 import HomePage from '..';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('home page', () => {
   afterEach(() => cleanup);
@@ -14,12 +15,14 @@ describe('home page', () => {
   it('should render header, search, and navbar component', () => {
     render(
       <ThemeProvider theme={THEME.light}>
-        <MockedProvider
-          mocks={GET_ALL_POKEMONS_MOCKS_SUCCESS}
-          addTypename={false}
-        >
-          <HomePage />
-        </MockedProvider>
+        <BrowserRouter>
+          <MockedProvider
+            mocks={GET_ALL_POKEMONS_MOCKS_SUCCESS}
+            addTypename={false}
+          >
+            <HomePage />
+          </MockedProvider>
+        </BrowserRouter>
       </ThemeProvider>
     );
 
@@ -31,12 +34,14 @@ describe('home page', () => {
   it('should render pokemon list if fetching get all pokemons success', async () => {
     render(
       <ThemeProvider theme={THEME.light}>
-        <MockedProvider
-          mocks={GET_ALL_POKEMONS_MOCKS_SUCCESS}
-          addTypename={false}
-        >
-          <HomePage />
-        </MockedProvider>
+        <BrowserRouter>
+          <MockedProvider
+            mocks={GET_ALL_POKEMONS_MOCKS_SUCCESS}
+            addTypename={false}
+          >
+            <HomePage />
+          </MockedProvider>
+        </BrowserRouter>
       </ThemeProvider>
     );
 
@@ -48,12 +53,14 @@ describe('home page', () => {
   it('should render not pokemon list if fetching get all pokemons error', async () => {
     render(
       <ThemeProvider theme={THEME.light}>
-        <MockedProvider
-          mocks={GET_ALL_POKEMONS_MOCKS_ERROR}
-          addTypename={false}
-        >
-          <HomePage />
-        </MockedProvider>
+        <BrowserRouter>
+          <MockedProvider
+            mocks={GET_ALL_POKEMONS_MOCKS_ERROR}
+            addTypename={false}
+          >
+            <HomePage />
+          </MockedProvider>
+        </BrowserRouter>
       </ThemeProvider>
     );
 
