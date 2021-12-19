@@ -14,6 +14,7 @@ import { PokemonListType } from 'models/pokemon';
 import { GET_ALL_POKEMONS } from 'lib/apiQueries';
 import cover from 'assets/images/cover.webp';
 import alertImage from 'assets/icons/warning.svg';
+import LoadingSpinner from 'components/loading-spinner';
 
 const HomePage: React.FC = () => {
   const theme: any = useTheme();
@@ -60,6 +61,8 @@ const HomePage: React.FC = () => {
         <SearchWidget />
         {error !== undefined ? (
           <AlertMessage msg="error" icon={alertImage} />
+        ) : loading ? (
+          <LoadingSpinner />
         ) : (
           <PokemonListWidget pokemons={pokemons} />
         )}
