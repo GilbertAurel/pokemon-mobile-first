@@ -15,7 +15,6 @@ const PokemonListWidget: React.FC = () => {
       gap: 0.75rem;
     `,
     details: css`
-      padding: 0 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
