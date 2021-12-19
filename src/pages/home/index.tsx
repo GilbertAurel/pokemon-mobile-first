@@ -1,20 +1,35 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx, useTheme } from '@emotion/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useQuery } from '@apollo/client';
 
-import cover from 'assets/images/cover.webp';
 import SearchWidget from 'components/search';
 import HeaderWidget from 'components/header';
 import PokemonListWidget from 'components/pokemon-list';
 import NavbarWidget from 'components/navbar';
+import AlertMessage from 'components/alert';
+
+import { PokemonListType } from 'models/pokemon';
+import { GET_ALL_POKEMONS } from 'lib/apiQueries';
+import cover from 'assets/images/cover.webp';
+import alertImage from 'assets/icons/warning.svg';
 
 const HomePage: React.FC = () => {
   const theme: any = useTheme();
+  const [pokemons, setPokemons] = useState<PokemonListType[]>([]);
+  const { loading, error, data } = useQuery(GET_ALL_POKEMONS, {
+    variables: { limit: 10, offset: 0 },
+  });
+
+  useEffect(() => {
+    if (loading === false) {
+      setPokemons([...pokemons, ...data.pokemons.results]);
+    }
+  }, [data]);
 
   const styles = {
     wrapper: css`
-      height: 100vh;
       width: 100vw;
       background-color: ${theme.colors.grayed};
     `,
@@ -25,7 +40,8 @@ const HomePage: React.FC = () => {
       position: relative;
       margin: auto;
       display: grid;
-      grid-auto-rows: 5rem;
+      overflow-y: scroll;
+      grid-auto-rows: minmax(5rem, max-content);
       background-color: ${theme.colors.background};
     `,
     cover: css`
@@ -39,15 +55,14 @@ const HomePage: React.FC = () => {
   return (
     <div css={styles.wrapper}>
       <div css={styles.container}>
-        <img
-          css={styles.cover}
-          src={cover}
-          alt="cover image"
-          data-testid="cover-img"
-        />
+        <img css={styles.cover} src={cover} alt="cover" />
         <HeaderWidget />
         <SearchWidget />
-        <PokemonListWidget />
+        {error !== undefined ? (
+          <AlertMessage msg="error" icon={alertImage} />
+        ) : (
+          <PokemonListWidget pokemons={pokemons} />
+        )}
         <NavbarWidget />
       </div>
     </div>

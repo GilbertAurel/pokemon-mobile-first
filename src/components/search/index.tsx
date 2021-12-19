@@ -30,7 +30,7 @@ const SearchWidget: React.FC = () => {
       input {
         width: 100%;
         height: 100%;
-        padding: 1.25rem;
+        padding: 0 2rem 0 1.25rem;
         border: none;
         border-radius: 1rem;
         box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);

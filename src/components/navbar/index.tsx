@@ -5,7 +5,11 @@ import React from 'react';
 
 const NavbarWidget: React.FC = () => {
   const styles = {
-    container: css``,
+    container: css`
+      position: sticky;
+      bottom: 0;
+      left: 0;
+    `,
   };
 
   return (
