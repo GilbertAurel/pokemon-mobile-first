@@ -6,29 +6,33 @@ import { SEARCH_POKEMON } from './apiQueries';
 export const useSearchPokemon = (): [
   PokemonListType[],
   (value: string) => void,
-  () => void
+  () => void,
+  boolean
 ] => {
   const initialRender = useRef(true);
   const [searchResult, setSearchResult] = useState<PokemonListType[]>([]);
   const [searchValue, setSearchValue] = useState('');
-  const [getSearchPokemon, { loading: loadingSearch, data: searchPokemon }] =
-    useLazyQuery(SEARCH_POKEMON, { variables: { name: searchValue } });
+  const [getSearchPokemon, { loading, data }] = useLazyQuery(SEARCH_POKEMON, {
+    variables: { name: searchValue },
+  });
 
   useEffect(() => {
     if (initialRender.current) {
       initialRender.current = false;
     } else {
-      if (loadingSearch === false) {
+      if (loading === false) {
         setSearchResult([
           {
-            id: searchPokemon?.pokemon?.id,
-            name: searchPokemon?.pokemon?.name,
-            image: searchPokemon?.pokemon?.sprites?.front_default,
+            id: data.pokemon.id ?? 0,
+            name: data.pokemon.name ?? '',
+            image: data.pokemon.sprites
+              ? data.pokemon.sprites.front_default
+              : '',
           },
         ]);
       }
     }
-  }, [searchPokemon]);
+  }, [data]);
 
   const searchPokemonHandler = async (value: string) => {
     await setSearchValue(value);
@@ -39,5 +43,5 @@ export const useSearchPokemon = (): [
     setSearchResult([]);
   };
 
-  return [searchResult, searchPokemonHandler, resetSearchResult];
+  return [searchResult, searchPokemonHandler, resetSearchResult, loading];
 };
