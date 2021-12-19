@@ -2,6 +2,7 @@
 /** @jsx jsx */
 import { css, jsx, useTheme } from '@emotion/react';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface Props {
   name: string;
@@ -14,13 +15,22 @@ const PokemonListCard: React.FC<Props> = ({ name, image }) => {
   const styles = {
     container: css`
       width: 95%;
+      padding: 0 0.75rem;
       justify-self: center;
       display: flex;
       align-items: center;
       gap: 1rem;
-      padding: 0 0.75rem;
+      background-color: ${theme.colors.background};
+      border: none;
       border-radius: 0.5rem;
       box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+
+      :active {
+        scale: 0.9;
+      }
+    `,
+    link: css`
+      text-decoration: none;
     `,
     image: css`
       height: 2.5rem;
@@ -35,10 +45,16 @@ const PokemonListCard: React.FC<Props> = ({ name, image }) => {
   };
 
   return (
-    <div css={styles.container} data-testid="list-result-card">
-      <img css={styles.image} src={image} alt="" />
-      <p css={styles.name}>{name}</p>
-    </div>
+    <Link to={`/details/${name}`} css={styles.link}>
+      <button
+        css={styles.container}
+        type="button"
+        data-testid="list-result-card"
+      >
+        <img css={styles.image} src={image} alt="" />
+        <p css={styles.name}>{name}</p>
+      </button>
+    </Link>
   );
 };
 
