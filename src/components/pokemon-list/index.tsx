@@ -85,7 +85,7 @@ const PokemonListWidget: React.FC<Props> = ({
       font-size: ${theme.fonts.button};
 
       :active {
-        scale: 0.9;
+        transform: scale(0.9);
       }
     `,
   };
@@ -117,9 +117,6 @@ const PokemonListWidget: React.FC<Props> = ({
         <button css={styles.backToTopBtn} onClick={backToTopHandler}>
           scroll up
         </button>
-      )}
-      {search && pokemons[0].id !== 0 && (
-        <AlertMessage msg={`found ${pokemons.length} pokemon`} />
       )}
     </div>
   );

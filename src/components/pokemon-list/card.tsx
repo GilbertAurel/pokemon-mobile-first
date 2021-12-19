@@ -14,6 +14,7 @@ const PokemonListCard: React.FC<Props> = ({ name, image }) => {
 
   const styles = {
     container: css`
+      height: 100%;
       width: 95%;
       padding: 0 0.75rem;
       justify-self: center;
@@ -30,6 +31,9 @@ const PokemonListCard: React.FC<Props> = ({ name, image }) => {
       }
     `,
     link: css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-decoration: none;
     `,
     image: css`
