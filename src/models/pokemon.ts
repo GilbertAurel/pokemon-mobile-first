@@ -5,7 +5,7 @@ export type PokemonListType = {
   artwork?: string;
 };
 
-type StatsType = {
+export type StatsType = {
   base: number;
   name: string;
 };
