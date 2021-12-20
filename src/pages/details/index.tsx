@@ -1,20 +1,27 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx, useTheme } from '@emotion/react';
+import NavbarWidget from 'components/navbar';
 import { useGetPokemonDetails } from 'lib/useGetPokemonDetails';
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 
 const DetailsPage: React.FC = () => {
   const theme: any = useTheme();
   const params = useParams();
+  const location = useLocation();
   const [pokemon, loading, setPokemonName] = useGetPokemonDetails();
+  const [artwork, setArtwork] = useState('');
 
   useEffect(() => {
-    if (params.pokemonName) {
+    if (params.pokemonName && params.pokemonName !== '') {
       setPokemonName(params.pokemonName);
     }
-  }, []);
+
+    if (location.state?.image) {
+      setArtwork(location.state.image);
+    }
+  }, [params]);
 
   const styles = {
     wrapper: css`
@@ -26,6 +33,9 @@ const DetailsPage: React.FC = () => {
       height: 100%;
       max-width: 30rem;
       margin: auto;
+      position: relative;
+      display: grid;
+      grid-auto-rows: 5rem;
       overflow-y: hidden;
       background-color: ${theme.colors.background};
     `,
@@ -37,7 +47,17 @@ const DetailsPage: React.FC = () => {
         <div>
           <p>Pokemon Details</p>
         </div>
-        {loading ? <p>loading</p> : <p>{pokemon?.name}</p>}
+        {loading ? (
+          <p>loading</p>
+        ) : (
+          <div data-testid="pokemon-details">
+            <img src={artwork} alt="" />
+            <p>{pokemon?.name}</p>
+            <p>{pokemon?.id}</p>
+          </div>
+        )}
+
+        <NavbarWidget />
       </div>
     </div>
   );
