@@ -7,9 +7,10 @@ import { Link } from 'react-router-dom';
 interface Props {
   name: string;
   image: string;
+  artwork?: string;
 }
 
-const PokemonListCard: React.FC<Props> = ({ name, image }) => {
+const PokemonListCard: React.FC<Props> = ({ name, image, artwork }) => {
   const theme: any = useTheme();
 
   const styles = {
@@ -49,7 +50,11 @@ const PokemonListCard: React.FC<Props> = ({ name, image }) => {
   };
 
   return (
-    <Link to={`/details/${name}`} css={styles.link}>
+    <Link
+      to={`/details/${name}`}
+      state={{ image: artwork || image }}
+      css={styles.link}
+    >
       <button
         css={styles.container}
         type="button"

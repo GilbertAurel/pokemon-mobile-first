@@ -109,6 +109,7 @@ const PokemonListWidget: React.FC<Props> = ({
             key={pokemon.id}
             name={pokemon.name}
             image={pokemon.image}
+            artwork={pokemon.artwork}
           />
         ))
       )}
