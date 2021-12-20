@@ -35,16 +35,33 @@ const DetailsPage: React.FC = () => {
       margin: auto;
       position: relative;
       display: grid;
-      grid-auto-rows: 5rem;
+      grid-template-rows: 5rem 1fr;
       overflow-y: hidden;
       background-color: ${theme.colors.background};
+    `,
+    header: css`
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      position: sticky;
+      top: 0;
+      background-color: ${theme.colors.background};
+      border-bottom-left-radius: 0.75rem;
+      border-bottom-right-radius: 0.75rem;
+      box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
+
+      p {
+        margin-bottom: 1rem;
+        font-weight: bold;
+        color: ${theme.colors.primary};
+      }
     `,
   };
 
   return (
     <div css={styles.wrapper}>
       <div css={styles.container}>
-        <div>
+        <div css={styles.header}>
           <p>Pokemon Details</p>
         </div>
         {loading ? (
