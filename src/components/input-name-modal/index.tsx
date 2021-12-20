@@ -6,9 +6,10 @@ import React from 'react';
 
 interface Props {
   submitHandler: (name: string) => void;
+  loading: boolean;
 }
 
-const InputNameModal: React.FC<Props> = ({ submitHandler }) => {
+const InputNameModal: React.FC<Props> = ({ submitHandler, loading }) => {
   const theme: any = useTheme();
   const [value, setValue] = useForm({ initialValue: { name: '' } });
 
@@ -71,10 +72,10 @@ const InputNameModal: React.FC<Props> = ({ submitHandler }) => {
     `,
     submit: css`
       padding: 0.5rem 1rem;
-      background: ${theme.colors.buttonBright};
+      background: ${loading ? theme.colors.grayed : theme.colors.buttonBright};
       border-radius: 0.5rem;
       border: none;
-      color: ${theme.colors.buttonBrightText};
+      color: ${loading ? theme.colors.white : theme.colors.buttonBrightText};
       font-size: ${theme.fonts.body};
     `,
   };
@@ -92,7 +93,7 @@ const InputNameModal: React.FC<Props> = ({ submitHandler }) => {
           onChange={(e) => setValue(e)}
           placeholder="optional pokemon name.."
         />
-        <button css={styles.submit} type="submit">
+        <button css={styles.submit} disabled={loading} type="submit">
           submit
         </button>
       </form>

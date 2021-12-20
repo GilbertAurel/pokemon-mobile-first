@@ -19,6 +19,7 @@ const DetailsPage: React.FC = () => {
   const [pokemon, loading, setPokemonName] = useGetPokemonDetails();
   const [artwork, setArtwork] = useState('');
   const [toggleInputName, setToggleInputName] = useState(false);
+  const [storingPokemon, setStoringPokemon] = useState(false);
 
   useEffect(() => {
     if (params.pokemonName && params.pokemonName !== '') {
@@ -32,6 +33,8 @@ const DetailsPage: React.FC = () => {
 
   const catchPokemonHandler = (name: string) => {
     if (pokemon) {
+      setStoringPokemon(true);
+
       catchPokemon({
         id: `${pokemon.id}-${name === '' ? pokemon.name : name}`,
         image: artwork,
@@ -39,7 +42,8 @@ const DetailsPage: React.FC = () => {
         pokemon: pokemon,
       })
         .then(() => setToggleInputName(false))
-        .catch((error) => alert(error.status));
+        .catch((error) => alert(error.status))
+        .finally(() => setStoringPokemon(false));
     }
   };
 
@@ -100,7 +104,10 @@ const DetailsPage: React.FC = () => {
         )}
         <NavbarDetailsPageWidget catchPokemonHandler={catchButtonHandler} />
         {toggleInputName && (
-          <InputNameModal submitHandler={catchPokemonHandler} />
+          <InputNameModal
+            submitHandler={catchPokemonHandler}
+            loading={storingPokemon}
+          />
         )}
       </div>
     </div>
