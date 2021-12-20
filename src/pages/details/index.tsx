@@ -46,6 +46,16 @@ const DetailsPage: React.FC = () => {
     }
   };
 
+  const catchButtonHandler = () => {
+    const successCatch = Math.random() < 0.5 ? false : true;
+
+    if (successCatch) {
+      return setToggleInputName(true);
+    }
+
+    return alert('oops the pokemon got away!');
+  };
+
   const styles = {
     wrapper: css`
       height: 100vh;
@@ -91,9 +101,7 @@ const DetailsPage: React.FC = () => {
         ) : (
           <PokemonDetailsWidget pokemon={pokemon} artwork={artwork} />
         )}
-        <NavbarDetailsPageWidget
-          catchPokemonHandler={() => setToggleInputName(true)}
-        />
+        <NavbarDetailsPageWidget catchPokemonHandler={catchButtonHandler} />
         {toggleInputName && (
           <InputNameModal submitHandler={catchPokemonHandler} />
         )}
