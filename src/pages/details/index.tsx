@@ -1,10 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx, useTheme } from '@emotion/react';
-import NavbarWidget from 'components/navbar';
-import { useGetPokemonDetails } from 'lib/useGetPokemonDetails';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+
+import LoadingSpinner from 'components/loading-spinner';
+import NavbarWidget from 'components/navbar';
+import PokemonDetailsWidget from 'components/pokemon-details';
+import { useGetPokemonDetails } from 'lib/useGetPokemonDetails';
 
 const DetailsPage: React.FC = () => {
   const theme: any = useTheme();
@@ -65,15 +68,10 @@ const DetailsPage: React.FC = () => {
           <p>Pokemon Details</p>
         </div>
         {loading ? (
-          <p>loading</p>
+          <LoadingSpinner />
         ) : (
-          <div data-testid="pokemon-details">
-            <img src={artwork} alt="" />
-            <p>{pokemon?.name}</p>
-            <p>{pokemon?.id}</p>
-          </div>
+          <PokemonDetailsWidget pokemon={pokemon} artwork={artwork} />
         )}
-
         <NavbarWidget />
       </div>
     </div>
