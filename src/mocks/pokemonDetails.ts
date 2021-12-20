@@ -1,6 +1,9 @@
+import { PokemonDetailType } from 'models/pokemon';
+
 export const MOCK_POKEMON_DETAILS = {
   pokemon: {
     name: 'bulbasaur',
+    id: 1,
     moves: [
       {
         move: {
@@ -459,4 +462,16 @@ export const MOCK_POKEMON_DETAILS = {
       },
     ],
   },
+};
+
+export const MOCK_POKEMON_DETAILS_CLEAN: PokemonDetailType = {
+  abilities: [],
+  name: '',
+  exp: 1,
+  height: 1,
+  id: 1,
+  moves: [],
+  stats: [],
+  types: [],
+  weight: 1,
 };
