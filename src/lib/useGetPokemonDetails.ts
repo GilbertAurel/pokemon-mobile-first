@@ -20,16 +20,16 @@ export const useGetPokemonDetails = (): [
         const { pokemon } = data;
         setDetails({
           name: name,
-          abilities: pokemon.abilities.map((ability: any) => ability.name),
-          exp: pokemon.base_experience,
-          height: pokemon.height,
-          weight: pokemon.weight,
-          stats: pokemon.stats.map((stat: any) => ({
+          abilities: pokemon.abilities?.map((ability: any) => ability.name),
+          exp: pokemon?.base_experience,
+          height: pokemon?.height,
+          weight: pokemon?.weight,
+          stats: pokemon.stats?.map((stat: any) => ({
             base: stat.base_stat,
             name: stat.stat.name,
           })),
-          moves: pokemon.moves.map((move: any) => move.name),
-          types: pokemon.types.map((type: any) => type.type.name),
+          moves: pokemon.moves?.map((move: any) => move.name),
+          types: pokemon.types?.map((type: any) => type.type.name),
         });
       }
     }

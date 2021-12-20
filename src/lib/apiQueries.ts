@@ -7,8 +7,8 @@ export const GET_ALL_POKEMONS = gql`
         name
         image
         id
+        artwork
       }
-      nextOffset
     }
   }
 `;
