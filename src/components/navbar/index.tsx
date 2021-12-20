@@ -1,14 +1,16 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx, useTheme } from '@emotion/react';
-import React from 'react';
+import React, { useContext } from 'react';
 
 import pokeballIcon from 'assets/images/pokeball.webp';
 import { Link, useLocation } from 'react-router-dom';
 import { MENU_BUTTONS } from './buttons';
+import { PokemonContext } from 'lib/pokemonContext';
 
 const NavbarWidget: React.FC = () => {
   const theme: any = useTheme();
+  const { myPokemons } = useContext(PokemonContext);
   const path = useLocation().pathname;
 
   const styles = {
@@ -25,6 +27,8 @@ const NavbarWidget: React.FC = () => {
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
       box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.1);
+      background-color: ${theme.colors.background};
+      z-index: 10;
     `,
     myPokemon: css`
       p {
@@ -73,7 +77,7 @@ const NavbarWidget: React.FC = () => {
         <p>My Pokemons</p>
         <section>
           <img src={pokeballIcon} alt="" />
-          <p>0</p>
+          <p>{myPokemons.length}</p>
         </section>
       </div>
       <section css={styles.navBtnContainer}>
@@ -88,7 +92,7 @@ const NavbarWidget: React.FC = () => {
               <p
                 css={css`
                   color: ${path === menu.path
-                    ? theme.colors.primary
+                    ? theme.colors.navbarBtnActive
                     : theme.colors.grayed};
                 `}
               >

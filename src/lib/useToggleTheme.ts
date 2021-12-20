@@ -6,7 +6,9 @@ export const useToggleTheme = (): [ThemeSelections, () => void] => {
 
   useEffect(() => {
     const localTheme = <ThemeSelections>localStorage.getItem('type') ?? 'light';
+
     setTheme(localTheme);
+    localStorage.setItem('type', localTheme);
   }, []);
 
   const toggleTheme = () => {

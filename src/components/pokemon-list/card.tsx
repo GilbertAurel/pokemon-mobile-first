@@ -7,9 +7,10 @@ import { Link } from 'react-router-dom';
 interface Props {
   name: string;
   image: string;
+  artwork?: string;
 }
 
-const PokemonListCard: React.FC<Props> = ({ name, image }) => {
+const PokemonListCard: React.FC<Props> = ({ name, image, artwork }) => {
   const theme: any = useTheme();
 
   const styles = {
@@ -21,7 +22,7 @@ const PokemonListCard: React.FC<Props> = ({ name, image }) => {
       display: flex;
       align-items: center;
       gap: 1rem;
-      background-color: ${theme.colors.background};
+      background-color: ${theme.colors.card};
       border: none;
       border-radius: 0.5rem;
       box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
@@ -49,7 +50,11 @@ const PokemonListCard: React.FC<Props> = ({ name, image }) => {
   };
 
   return (
-    <Link to={`/details/${name}`} css={styles.link}>
+    <Link
+      to={`/details/${name}`}
+      state={{ image: artwork || image }}
+      css={styles.link}
+    >
       <button
         css={styles.container}
         type="button"

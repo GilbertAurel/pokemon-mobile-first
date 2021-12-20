@@ -11,8 +11,8 @@ import LoadingSpinner from 'components/loading-spinner';
 
 interface Props {
   pokemons: PokemonListType[];
-  search: boolean;
-  loadNewPokemon: () => void;
+  search?: boolean;
+  loadNewPokemon?: () => void;
   query?: string;
 }
 
@@ -32,7 +32,7 @@ const PokemonListWidget: React.FC<Props> = ({
       event.target.scrollTop -
       event.target.clientHeight;
 
-    if (atBottom < 5) {
+    if (atBottom < 5 && loadNewPokemon) {
       setLoading(true);
       return loadNewPokemon();
     }
@@ -48,6 +48,7 @@ const PokemonListWidget: React.FC<Props> = ({
     container: css`
       display: grid;
       grid-auto-rows: 3rem;
+      padding-bottom: 1rem;
       gap: 0.75rem;
       position: relative;
       overflow-y: scroll;
@@ -81,7 +82,7 @@ const PokemonListWidget: React.FC<Props> = ({
       background-color: ${theme.colors.buttonBright};
       border: none;
       border-radius: 50%;
-      color: ${theme.colors.primary};
+      color: ${theme.colors.buttonBrightText};
       font-size: ${theme.fonts.button};
 
       :active {
@@ -94,7 +95,7 @@ const PokemonListWidget: React.FC<Props> = ({
     <div
       css={styles.container}
       ref={listRef}
-      onScroll={(event) => scrollHandler(event)}
+      onScroll={(event) => loadNewPokemon && scrollHandler(event)}
       data-testid="list"
     >
       <section css={styles.details}>
@@ -109,6 +110,7 @@ const PokemonListWidget: React.FC<Props> = ({
             key={pokemon.id}
             name={pokemon.name}
             image={pokemon.image}
+            artwork={pokemon.artwork}
           />
         ))
       )}

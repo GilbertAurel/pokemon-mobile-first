@@ -7,8 +7,8 @@ export const GET_ALL_POKEMONS = gql`
         name
         image
         id
+        artwork
       }
-      nextOffset
     }
   }
 `;
@@ -28,6 +28,7 @@ export const SEARCH_POKEMON = gql`
 export const GET_POKEMON_DETAILS = gql`
   query GetPokemonDetails($name: String!) {
     pokemon(name: $name) {
+      id
       name
       moves {
         move {

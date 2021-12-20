@@ -35,6 +35,7 @@ describe('pokemon list widget component', () => {
               id: 0,
               name: '',
               image: '',
+              artwork: '',
             },
           ]}
           search={false}

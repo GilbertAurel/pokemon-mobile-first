@@ -70,7 +70,7 @@ const SearchWidget: React.FC<Props> = ({ searchHandler, showAllHandler }) => {
       box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
       border-radius: 1rem;
       border: none;
-      color: ${theme.colors.primary};
+      color: ${theme.colors.buttonBrightText};
       font-size: ${theme.fonts.body};
 
       :active {

@@ -1,15 +1,17 @@
 export type PokemonListType = {
   name: string;
   image: string;
-  id: number;
+  id: number | string;
+  artwork?: string;
 };
 
-type StatsType = {
+export type StatsType = {
   base: number;
   name: string;
 };
 
 export type PokemonDetailType = {
+  id: number;
   name: string;
   moves: string[];
   types: string[];

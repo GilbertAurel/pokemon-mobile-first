@@ -4,10 +4,14 @@ type ColorsType = {
   primary: string;
   secondary: string;
   buttonBright: string;
+  buttonBrightText: string;
   background: string;
   text: string;
   grayed: string;
   delete: string;
+  white: string;
+  card: string;
+  navbarBtnActive: string;
 };
 
 export type FontType = {
