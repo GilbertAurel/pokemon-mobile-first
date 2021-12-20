@@ -32,10 +32,10 @@ export const PokemonProvider: React.FC<Props> = ({ children }) => {
   const [pokemons, setPokemons] = useState<MyPokemonType[]>([]);
 
   useEffect(() => {
-    const localPokemons = JSON.parse(localStorage.getItem('pokemons') || '');
+    const localPokemons = localStorage.getItem('pokemons');
 
     if (localPokemons) {
-      setPokemons(localPokemons);
+      setPokemons(JSON.parse(localStorage.getItem('pokemons') || ''));
     }
   }, []);
 
