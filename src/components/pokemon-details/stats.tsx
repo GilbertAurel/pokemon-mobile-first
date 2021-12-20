@@ -36,6 +36,7 @@ const PokemonStats: React.FC<Props> = ({ stats }) => {
       p {
         padding: 0;
         margin: 0;
+        font-size: ${theme.fonts.body};
       }
     `,
   };

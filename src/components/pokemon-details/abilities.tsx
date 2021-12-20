@@ -27,6 +27,7 @@ const PokemonAbilities: React.FC<Props> = ({ abilities }) => {
       padding: 0;
       margin: 0;
       color: ${theme.colors.primary};
+      font-size: ${theme.fonts.body};
     `,
   };
 
