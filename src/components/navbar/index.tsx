@@ -25,6 +25,8 @@ const NavbarWidget: React.FC = () => {
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
       box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.1);
+      background-color: ${theme.colors.background};
+      z-index: 10;
     `,
     myPokemon: css`
       p {

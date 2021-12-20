@@ -49,9 +49,8 @@ const DetailsPage: React.FC = () => {
       position: sticky;
       top: 0;
       background-color: ${theme.colors.background};
-      border-bottom-left-radius: 0.75rem;
-      border-bottom-right-radius: 0.75rem;
       box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
+      z-index: 10;
 
       p {
         margin-bottom: 1rem;
@@ -64,6 +63,7 @@ const DetailsPage: React.FC = () => {
   return (
     <div css={styles.wrapper}>
       <div css={styles.container}>
+        <NavbarWidget />
         <div css={styles.header}>
           <p>Pokemon Details</p>
         </div>
@@ -72,7 +72,6 @@ const DetailsPage: React.FC = () => {
         ) : (
           <PokemonDetailsWidget pokemon={pokemon} artwork={artwork} />
         )}
-        <NavbarWidget />
       </div>
     </div>
   );
