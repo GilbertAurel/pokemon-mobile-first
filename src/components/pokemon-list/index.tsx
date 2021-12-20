@@ -12,6 +12,7 @@ import LoadingSpinner from 'components/loading-spinner';
 interface Props {
   pokemons: PokemonListType[];
   loadNewPokemon?: () => void;
+  pokemonClickHandler: (name?: string, image?: string) => void;
   query?: string;
 }
 
@@ -19,6 +20,7 @@ const PokemonListWidget: React.FC<Props> = ({
   pokemons,
   loadNewPokemon,
   query = 'all pokemons',
+  pokemonClickHandler,
 }) => {
   const theme: any = useTheme();
   const listRef = useRef<HTMLDivElement>(null);
@@ -109,6 +111,7 @@ const PokemonListWidget: React.FC<Props> = ({
             name={pokemon.name}
             image={pokemon.image}
             artwork={pokemon.artwork}
+            pokemonClickHandler={pokemonClickHandler}
           />
         ))
       )}

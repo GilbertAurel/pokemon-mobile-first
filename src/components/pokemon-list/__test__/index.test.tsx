@@ -13,6 +13,7 @@ describe('pokemon list widget component', () => {
           <PokemonListWidget
             pokemons={MOCK_POKEMON}
             loadNewPokemon={() => {}}
+            pokemonClickHandler={() => {}}
           />
         </BrowserRouter>
       </ThemeProvider>
@@ -37,6 +38,7 @@ describe('pokemon list widget component', () => {
               artwork: '',
             },
           ]}
+          pokemonClickHandler={() => {}}
           loadNewPokemon={() => {}}
         />
       </ThemeProvider>
@@ -51,6 +53,7 @@ describe('pokemon list widget component', () => {
         <BrowserRouter>
           <PokemonListWidget
             pokemons={MOCK_POKEMON}
+            pokemonClickHandler={() => {}}
             loadNewPokemon={() => {}}
           />
         </BrowserRouter>
@@ -60,6 +63,6 @@ describe('pokemon list widget component', () => {
     const pokemonBtn = screen.getAllByTestId('list-result-card')[0];
     fireEvent.click(pokemonBtn);
 
-    expect(window.location.pathname).toBe(`/details/${MOCK_POKEMON[0].name}`);
+    expect(window.location.pathname).toBe(`/`);
   });
 });
