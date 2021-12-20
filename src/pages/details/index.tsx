@@ -1,20 +1,24 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx, useTheme } from '@emotion/react';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
 import LoadingSpinner from 'components/loading-spinner';
-import NavbarWidget from 'components/navbar';
 import PokemonDetailsWidget from 'components/pokemon-details';
 import { useGetPokemonDetails } from 'lib/useGetPokemonDetails';
+import NavbarDetailsPageWidget from 'components/navbar-details-page';
+import InputNameModal from 'components/input-name-modal';
+import { PokemonContext } from 'lib/pokemonContext';
 
 const DetailsPage: React.FC = () => {
   const theme: any = useTheme();
   const params = useParams();
   const location = useLocation();
+  const { catchPokemon } = useContext(PokemonContext);
   const [pokemon, loading, setPokemonName] = useGetPokemonDetails();
   const [artwork, setArtwork] = useState('');
+  const [toggleInputName, setToggleInputName] = useState(false);
 
   useEffect(() => {
     if (params.pokemonName && params.pokemonName !== '') {
@@ -25,6 +29,22 @@ const DetailsPage: React.FC = () => {
       setArtwork(location.state.image);
     }
   }, [params]);
+
+  const catchPokemonHandler = (name: string) => {
+    if (pokemon) {
+      catchPokemon({
+        id: `${pokemon.id}-${name === '' ? pokemon.name : name}`,
+        image: artwork,
+        nickname: name === '' ? pokemon.name : name,
+        pokemon: pokemon,
+      })
+        .then(() => {
+          setToggleInputName(false);
+          alert('pokemon successfully added');
+        })
+        .catch((error) => alert(error.status));
+    }
+  };
 
   const styles = {
     wrapper: css`
@@ -63,7 +83,6 @@ const DetailsPage: React.FC = () => {
   return (
     <div css={styles.wrapper}>
       <div css={styles.container}>
-        <NavbarWidget />
         <div css={styles.header}>
           <p>Pokemon Details</p>
         </div>
@@ -71,6 +90,12 @@ const DetailsPage: React.FC = () => {
           <LoadingSpinner />
         ) : (
           <PokemonDetailsWidget pokemon={pokemon} artwork={artwork} />
+        )}
+        <NavbarDetailsPageWidget
+          catchPokemonHandler={() => setToggleInputName(true)}
+        />
+        {toggleInputName && (
+          <InputNameModal submitHandler={catchPokemonHandler} />
         )}
       </div>
     </div>
