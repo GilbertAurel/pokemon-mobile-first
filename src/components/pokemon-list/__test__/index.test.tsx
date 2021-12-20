@@ -12,7 +12,6 @@ describe('pokemon list widget component', () => {
         <BrowserRouter>
           <PokemonListWidget
             pokemons={MOCK_POKEMON}
-            search={false}
             loadNewPokemon={() => {}}
           />
         </BrowserRouter>
@@ -38,7 +37,6 @@ describe('pokemon list widget component', () => {
               artwork: '',
             },
           ]}
-          search={false}
           loadNewPokemon={() => {}}
         />
       </ThemeProvider>
@@ -53,7 +51,6 @@ describe('pokemon list widget component', () => {
         <BrowserRouter>
           <PokemonListWidget
             pokemons={MOCK_POKEMON}
-            search={false}
             loadNewPokemon={() => {}}
           />
         </BrowserRouter>

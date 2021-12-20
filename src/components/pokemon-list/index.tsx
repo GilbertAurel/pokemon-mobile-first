@@ -11,14 +11,12 @@ import LoadingSpinner from 'components/loading-spinner';
 
 interface Props {
   pokemons: PokemonListType[];
-  search?: boolean;
   loadNewPokemon?: () => void;
   query?: string;
 }
 
 const PokemonListWidget: React.FC<Props> = ({
   pokemons,
-  search,
   loadNewPokemon,
   query = 'all pokemons',
 }) => {
@@ -114,8 +112,8 @@ const PokemonListWidget: React.FC<Props> = ({
           />
         ))
       )}
-      {loading && !search && <LoadingSpinner />}
-      {loading && !search && (
+      {loading && query === 'all pokemons' && <LoadingSpinner />}
+      {loading && query === 'all pokemons' && (
         <button css={styles.backToTopBtn} onClick={backToTopHandler}>
           scroll up
         </button>
