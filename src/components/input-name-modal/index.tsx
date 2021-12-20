@@ -60,7 +60,7 @@ const InputNameModal: React.FC<Props> = ({ submitHandler, loading }) => {
       width: 80%;
       padding: 0.5rem 0.5rem;
       font-size: ${theme.fonts.body};
-      color: ${theme.colors.text};
+      color: ${theme.colors.buttonBrightText};
       border: none;
       box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
       border-radius: 1rem;

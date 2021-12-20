@@ -1,7 +1,7 @@
 export type PokemonListType = {
   name: string;
   image: string;
-  id: number;
+  id: number | string;
   artwork?: string;
 };
 

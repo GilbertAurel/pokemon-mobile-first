@@ -1,14 +1,16 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx, useTheme } from '@emotion/react';
-import React from 'react';
+import React, { useContext } from 'react';
 
 import pokeballIcon from 'assets/images/pokeball.webp';
 import { Link, useLocation } from 'react-router-dom';
 import { MENU_BUTTONS } from './buttons';
+import { PokemonContext } from 'lib/pokemonContext';
 
 const NavbarWidget: React.FC = () => {
   const theme: any = useTheme();
+  const { myPokemons } = useContext(PokemonContext);
   const path = useLocation().pathname;
 
   const styles = {
@@ -75,7 +77,7 @@ const NavbarWidget: React.FC = () => {
         <p>My Pokemons</p>
         <section>
           <img src={pokeballIcon} alt="" />
-          <p>0</p>
+          <p>{myPokemons.length}</p>
         </section>
       </div>
       <section css={styles.navBtnContainer}>
