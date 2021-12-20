@@ -12,6 +12,7 @@ import cover from 'assets/images/cover.webp';
 import { useSearchPokemon } from 'lib/useSearchPokemon';
 import { useGetAllPokemons } from 'lib/useGetAllPokemons';
 import LoadingSpinner from 'components/loading-spinner';
+import ThemeToggler from 'components/theme-toggler';
 
 const HomePage: React.FC = () => {
   const theme: any = useTheme();
@@ -52,7 +53,8 @@ const HomePage: React.FC = () => {
   return (
     <div css={styles.wrapper}>
       <div css={styles.container}>
-        <img css={styles.cover} src={cover} alt="cover" />
+        <ThemeToggler />
+        <img css={styles.cover} src={cover} alt="" />
         <HeaderWidget />
         <SearchWidget
           searchHandler={searchHandler}
