@@ -68,6 +68,13 @@ const BagPage: React.FC = () => {
       width: 100%;
       padding: 0 2.5rem;
     `,
+    deleteText: css`
+      justify-self: center;
+      align-self: center;
+      text-align: center;
+      font-size: ${theme.fonts.body};
+      color: ${theme.colors.grayed};
+    `,
   };
 
   return (
@@ -81,7 +88,7 @@ const BagPage: React.FC = () => {
             pokemons={pokemons}
             pokemonClickHandler={pokemonClickHandler}
           />
-          <p>click to delete pokemon</p>
+          <p css={styles.deleteText}>click to delete pokemon</p>
         </div>
         <NavbarWidget />
       </div>

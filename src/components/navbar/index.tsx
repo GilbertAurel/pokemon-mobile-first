@@ -80,7 +80,7 @@ const NavbarWidget: React.FC = () => {
           <p>{myPokemons.length}</p>
         </section>
       </div>
-      <section css={styles.navBtnContainer}>
+      <div css={styles.navBtnContainer}>
         {MENU_BUTTONS.map((menu) => (
           <Link key={menu.title} to={menu.path}>
             <button css={styles.navBtn} data-testid="navbar-button">
@@ -101,7 +101,7 @@ const NavbarWidget: React.FC = () => {
             </button>
           </Link>
         ))}
-      </section>
+      </div>
     </div>
   );
 };
