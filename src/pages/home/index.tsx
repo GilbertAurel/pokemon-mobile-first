@@ -65,7 +65,6 @@ const HomePage: React.FC = () => {
         ) : (
           <PokemonListWidget
             pokemons={searchResult.length > 0 ? searchResult : pokemons}
-            search={searchResult.length > 0}
             loadNewPokemon={loadNextPokemons}
             query={searchResult.length > 0 ? search : 'all pokemons'}
           />
