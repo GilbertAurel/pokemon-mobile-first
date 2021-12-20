@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PokemonDetailType } from 'models/pokemon';
 
 export type MyPokemonType = {
@@ -31,11 +31,23 @@ interface Props {
 export const PokemonProvider: React.FC<Props> = ({ children }) => {
   const [pokemons, setPokemons] = useState<MyPokemonType[]>([]);
 
+  useEffect(() => {
+    const localPokemons = JSON.parse(localStorage.getItem('pokemons') || '');
+
+    if (localPokemons) {
+      setPokemons(localPokemons);
+    }
+  }, []);
+
   const addPokemonToList = (data: MyPokemonType): Promise<any> => {
     return new Promise((resolve, error) => {
       if (!pokemons.some((pokemon) => pokemon.id === data.id)) {
         setPokemons([...pokemons, data]);
-        return resolve({ status: 'successfully added' });
+
+        return setTimeout(() => {
+          localStorage.setItem('pokemons', JSON.stringify(pokemons));
+          resolve({ status: 'successfully added', data: pokemons });
+        }, 1000);
       }
 
       return error({ status: 'pokemon already exists' });
@@ -50,7 +62,11 @@ export const PokemonProvider: React.FC<Props> = ({ children }) => {
 
       const newPokemons = pokemons.filter((pokemon) => pokemon.id === id);
       setPokemons(newPokemons);
-      return resolve({ status: 'successfully removed' });
+
+      return setTimeout(() => {
+        localStorage.setItem('pokemons', JSON.stringify(pokemons));
+        resolve({ status: 'successfully removed', data: pokemons });
+      }, 1000);
     });
   };
 
