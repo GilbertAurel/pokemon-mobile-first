@@ -28,6 +28,7 @@ export const SEARCH_POKEMON = gql`
 export const GET_POKEMON_DETAILS = gql`
   query GetPokemonDetails($name: String!) {
     pokemon(name: $name) {
+      id
       name
       moves {
         move {

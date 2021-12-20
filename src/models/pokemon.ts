@@ -11,6 +11,7 @@ type StatsType = {
 };
 
 export type PokemonDetailType = {
+  id: number;
   name: string;
   moves: string[];
   types: string[];
