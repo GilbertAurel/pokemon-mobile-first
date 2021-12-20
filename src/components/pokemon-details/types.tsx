@@ -37,7 +37,7 @@ const PokemonTypes: React.FC<Props> = ({ types }) => {
   return (
     <div css={styles.container}>
       {types?.map((type) => (
-        <div key={type} css={styles.type}>
+        <div key={type} css={styles.type} data-testid="details-type">
           <img src={require(`assets/poke/icons/Icon_${type}.webp`)} alt="" />
           <p>{type}</p>
         </div>

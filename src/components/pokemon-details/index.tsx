@@ -66,9 +66,16 @@ const PokemonDetailsWidget: React.FC<Props> = ({ pokemon, artwork }) => {
   return (
     <div css={styles.container} data-testid="pokemon-details">
       <PokemonCover type={pokemon?.types[0]} />
-      <img css={styles.image} src={artwork} alt="" />
+      <img
+        css={styles.image}
+        src={artwork}
+        alt=""
+        data-testid="details-image"
+      />
       <div css={styles.nameContainer}>
-        <p css={styles.name}>{pokemon?.name}</p>
+        <p css={styles.name} data-testid="details-name">
+          {pokemon?.name}
+        </p>
         <PokemonTypes types={pokemon?.types} />
       </div>
       <div css={styles.statsContainer}>

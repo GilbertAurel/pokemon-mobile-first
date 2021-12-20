@@ -34,7 +34,7 @@ const PokemonAbilities: React.FC<Props> = ({ abilities }) => {
     <div css={styles.container}>
       <p css={styles.title}>Abilities</p>
       {abilities?.map((ability) => (
-        <p key={ability} css={styles.ability}>
+        <p key={ability} css={styles.ability} data-testid="details-ability">
           {ability}
         </p>
       ))}

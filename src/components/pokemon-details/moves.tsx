@@ -59,7 +59,7 @@ const PokemonMoves: React.FC<Props> = ({ moves }) => {
       <p css={styles.title}>All Moves</p>
       <div css={styles.moves}>
         {moves?.map((move) => (
-          <div key={move} css={styles.move}>
+          <div key={move} css={styles.move} data-testid="details-move">
             <p>{move}</p>
           </div>
         ))}

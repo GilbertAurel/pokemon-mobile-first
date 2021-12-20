@@ -45,7 +45,7 @@ const PokemonStats: React.FC<Props> = ({ stats }) => {
       <p css={styles.title}>Statistics</p>
       <div css={styles.stats}>
         {stats?.map((stat) => (
-          <section key={stat.name} css={styles.stat}>
+          <section key={stat.name} css={styles.stat} data-testid="details-stat">
             <p>{stat.name}</p>
             <p>{stat.base}</p>
           </section>

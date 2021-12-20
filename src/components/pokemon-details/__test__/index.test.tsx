@@ -5,7 +5,7 @@ import { THEME } from 'styles/_base';
 import PokemonDetailsWidget from '..';
 
 describe('pokemon details component', () => {
-  it('should render the page succesfully', () => {
+  it('should have pokemon image, name, types, stats, abilities, and moves', () => {
     render(
       <ThemeProvider theme={THEME.light}>
         <PokemonDetailsWidget
@@ -15,6 +15,19 @@ describe('pokemon details component', () => {
       </ThemeProvider>
     );
 
-    expect(screen.queryByText('pokemon details'));
+    expect(screen.getByTestId('details-image')).toBeTruthy();
+    expect(screen.getByTestId('details-name')).toBeTruthy();
+    expect(screen.getAllByTestId('details-type')).toHaveLength(
+      MOCK_POKEMON_DETAILS_CLEAN.types.length
+    );
+    expect(screen.getAllByTestId('details-stat')).toHaveLength(
+      MOCK_POKEMON_DETAILS_CLEAN.stats.length
+    );
+    expect(screen.getAllByTestId('details-ability')).toHaveLength(
+      MOCK_POKEMON_DETAILS_CLEAN.abilities.length
+    );
+    expect(screen.getAllByTestId('details-move')).toHaveLength(
+      MOCK_POKEMON_DETAILS_CLEAN.moves.length
+    );
   });
 });
