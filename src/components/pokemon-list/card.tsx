@@ -1,16 +1,22 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx, useTheme } from '@emotion/react';
+import { CardClickType } from 'models/cardClick';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 interface Props {
   name: string;
   image: string;
-  artwork?: string;
+  id: string;
+  pokemonClickHandler: ({}: CardClickType) => void;
 }
 
-const PokemonListCard: React.FC<Props> = ({ name, image, artwork }) => {
+const PokemonListCard: React.FC<Props> = ({
+  name,
+  image,
+  id,
+  pokemonClickHandler,
+}) => {
   const theme: any = useTheme();
 
   const styles = {
@@ -50,20 +56,15 @@ const PokemonListCard: React.FC<Props> = ({ name, image, artwork }) => {
   };
 
   return (
-    <Link
-      to={`/details/${name}`}
-      state={{ image: artwork || image }}
-      css={styles.link}
+    <button
+      css={styles.container}
+      onClick={() => pokemonClickHandler({ name, image, id })}
+      type="button"
+      data-testid="list-result-card"
     >
-      <button
-        css={styles.container}
-        type="button"
-        data-testid="list-result-card"
-      >
-        <img css={styles.image} src={image} alt="" />
-        <p css={styles.name}>{name}</p>
-      </button>
-    </Link>
+      <img css={styles.image} src={image} alt="" />
+      <p css={styles.name}>{name}</p>
+    </button>
   );
 };
 

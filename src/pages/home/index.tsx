@@ -13,9 +13,12 @@ import { useSearchPokemon } from 'lib/useSearchPokemon';
 import { useGetAllPokemons } from 'lib/useGetAllPokemons';
 import LoadingSpinner from 'components/loading-spinner';
 import ThemeToggler from 'components/theme-toggler';
+import { useNavigate } from 'react-router-dom';
+import { CardClickType } from 'models/cardClick';
 
 const HomePage: React.FC = () => {
   const theme: any = useTheme();
+  const navigate = useNavigate();
   const [
     searchResult,
     searchHandler,
@@ -24,6 +27,10 @@ const HomePage: React.FC = () => {
     searchLoading,
   ] = useSearchPokemon();
   const [pokemons, loadNextPokemons] = useGetAllPokemons();
+
+  const pokemonClickHandler = ({ name, image }: CardClickType) => {
+    navigate(`/details/${name}`, { state: { image: image } });
+  };
 
   const styles = {
     wrapper: css`
@@ -66,6 +73,7 @@ const HomePage: React.FC = () => {
           <PokemonListWidget
             pokemons={searchResult.length > 0 ? searchResult : pokemons}
             loadNewPokemon={loadNextPokemons}
+            pokemonClickHandler={pokemonClickHandler}
             query={searchResult.length > 0 ? search : 'all pokemons'}
           />
         )}

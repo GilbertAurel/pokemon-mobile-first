@@ -39,15 +39,18 @@ export const PokemonProvider: React.FC<Props> = ({ children }) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (pokemons.length > 0) {
+      localStorage.setItem('pokemons', JSON.stringify(pokemons));
+    }
+  }, [pokemons]);
+
   const addPokemonToList = (data: MyPokemonType): Promise<any> => {
     return new Promise((resolve, error) => {
       if (!pokemons.some((pokemon) => pokemon.id === data.id)) {
         setPokemons([...pokemons, data]);
 
-        return setTimeout(() => {
-          localStorage.setItem('pokemons', JSON.stringify(pokemons));
-          resolve({ status: 'successfully added', data: pokemons });
-        }, 1000);
+        return resolve({ status: 'successfully added' });
       }
 
       return error({ status: 'pokemon already exists' });
@@ -60,13 +63,9 @@ export const PokemonProvider: React.FC<Props> = ({ children }) => {
         return error({ status: 'pokemon doesnt exists' });
       }
 
-      const newPokemons = pokemons.filter((pokemon) => pokemon.id === id);
-      setPokemons(newPokemons);
+      setPokemons(pokemons.filter((pokemon) => pokemon.id !== id));
 
-      return setTimeout(() => {
-        localStorage.setItem('pokemons', JSON.stringify(pokemons));
-        resolve({ status: 'successfully removed', data: pokemons });
-      }, 1000);
+      return resolve({ status: 'successfully removed' });
     });
   };
 

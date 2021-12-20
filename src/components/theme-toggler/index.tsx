@@ -25,11 +25,16 @@ const ThemeToggler: React.FC = () => {
       border: none;
       border-radius: 50%;
       box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+
+      img {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
     `,
   };
 
   return (
-    <button css={styles.container} onClick={toggleThemeHandler}>
+    <button css={styles.container} type="button" onClick={toggleThemeHandler}>
       <img src={selectedTheme === 'light' ? light : dark} alt="" />
     </button>
   );
