@@ -8,11 +8,12 @@ import { PokemonListType } from 'models/pokemon';
 import PokemonListCard from './card';
 import alertImage from 'assets/icons/warning.svg';
 import LoadingSpinner from 'components/loading-spinner';
+import { CardClickType } from 'models/cardClick';
 
 interface Props {
   pokemons: PokemonListType[];
   loadNewPokemon?: () => void;
-  pokemonClickHandler: (name?: string, image?: string) => void;
+  pokemonClickHandler: ({}: CardClickType) => void;
   query?: string;
 }
 
@@ -58,7 +59,7 @@ const PokemonListWidget: React.FC<Props> = ({
       scrollbar-width: none;
 
       ::-webkit-scrollbar {
-        display: none; /* Safari and Chrome */
+        display: none;
       }
     `,
     details: css`
@@ -110,7 +111,7 @@ const PokemonListWidget: React.FC<Props> = ({
             key={pokemon.id}
             name={pokemon.name}
             image={pokemon.image}
-            artwork={pokemon.artwork}
+            id={pokemon.id.toString()}
             pokemonClickHandler={pokemonClickHandler}
           />
         ))

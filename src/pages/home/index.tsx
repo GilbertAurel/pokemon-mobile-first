@@ -14,6 +14,7 @@ import { useGetAllPokemons } from 'lib/useGetAllPokemons';
 import LoadingSpinner from 'components/loading-spinner';
 import ThemeToggler from 'components/theme-toggler';
 import { useNavigate } from 'react-router-dom';
+import { CardClickType } from 'models/cardClick';
 
 const HomePage: React.FC = () => {
   const theme: any = useTheme();
@@ -27,7 +28,7 @@ const HomePage: React.FC = () => {
   ] = useSearchPokemon();
   const [pokemons, loadNextPokemons] = useGetAllPokemons();
 
-  const pokemonClickHandler = (name?: string, image?: string) => {
+  const pokemonClickHandler = ({ name, image }: CardClickType) => {
     navigate(`/details/${name}`, { state: { image: image } });
   };
 
