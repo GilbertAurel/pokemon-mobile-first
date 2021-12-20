@@ -38,9 +38,7 @@ const DetailsPage: React.FC = () => {
         nickname: name === '' ? pokemon.name : name,
         pokemon: pokemon,
       })
-        .then(() => {
-          setToggleInputName(false);
-        })
+        .then(() => setToggleInputName(false))
         .catch((error) => alert(error.status));
     }
   };
