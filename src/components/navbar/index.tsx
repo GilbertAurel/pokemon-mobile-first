@@ -88,7 +88,7 @@ const NavbarWidget: React.FC = () => {
               <p
                 css={css`
                   color: ${path === menu.path
-                    ? theme.colors.primary
+                    ? theme.colors.navbarBtnActive
                     : theme.colors.grayed};
                 `}
               >

@@ -81,7 +81,7 @@ const PokemonListWidget: React.FC<Props> = ({
       background-color: ${theme.colors.buttonBright};
       border: none;
       border-radius: 50%;
-      color: ${theme.colors.primary};
+      color: ${theme.colors.buttonBrightText};
       font-size: ${theme.fonts.button};
 
       :active {

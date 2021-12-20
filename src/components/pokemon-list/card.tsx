@@ -22,7 +22,7 @@ const PokemonListCard: React.FC<Props> = ({ name, image, artwork }) => {
       display: flex;
       align-items: center;
       gap: 1rem;
-      background-color: ${theme.colors.background};
+      background-color: ${theme.colors.card};
       border: none;
       border-radius: 0.5rem;
       box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);

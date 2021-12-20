@@ -13,7 +13,7 @@ const HeaderWidget: React.FC = () => {
       flex-direction: column;
       justify-content: flex-end;
       z-index: 1;
-      color: ${theme.colors.background};
+      color: ${theme.colors.white};
     `,
     title: css`
       max-width: 20ch;
