@@ -40,7 +40,6 @@ const DetailsPage: React.FC = () => {
       })
         .then(() => {
           setToggleInputName(false);
-          alert('pokemon successfully added');
         })
         .catch((error) => alert(error.status));
     }
